@@ -1,0 +1,1748 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NetoFramework - Enterprise Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            padding: 1rem 0;
+        }
+
+        header.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #3b82f6, #4f46e5);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+        }
+
+        .logo-text h1 {
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1f2937, #4b5563);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo-text p {
+            font-size: 12px;
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #3b82f6;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #3b82f6;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #3b82f6, #4f46e5);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+        }
+
+        .mobile-menu {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #374151;
+        }
+
+        .mobile-nav {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            margin: 0 20px;
+            padding: 20px;
+        }
+
+        .mobile-nav.active {
+            display: block;
+        }
+
+        .mobile-nav a {
+            display: block;
+            padding: 12px 0;
+            color: #374151;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .mobile-nav a:last-child {
+            border-bottom: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            background: linear-gradient(135deg, #f8fafc, #e0f2fe, #ddd6fe);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(59, 130, 246, 0.1);
+            color: #1d4ed8;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 16px;
+            line-height: 1.1;
+        }
+
+        .hero h1 span {
+            display: block;
+            font-size: 2.5rem;
+            color: #6b7280;
+            font-weight: 400;
+            margin-top: 8px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #6b7280;
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6, #4f46e5);
+            color: white;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 16px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #374151;
+            padding: 16px 32px;
+            border: 2px solid #d1d5db;
+            border-radius: 16px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-secondary:hover {
+            border-color: #9ca3af;
+            background: #f9fafb;
+        }
+
+        .hero-image {
+            position: relative;
+            animation: fadeInRight 1s ease-out 0.3s both;
+        }
+
+        .hero-card {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            transform: rotate(3deg);
+            transition: transform 0.5s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-card:hover {
+            transform: rotate(0deg);
+        }
+
+        .hero-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin-bottom: 24px;
+        }
+
+        .hero-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 8px;
+        }
+
+        .hero-card p {
+            color: #6b7280;
+            font-size: 16px;
+        }
+
+        .hero-bg-1, .hero-bg-2 {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 24px;
+            opacity: 0.2;
+            z-index: 1;
+        }
+
+        .hero-bg-1 {
+            background: linear-gradient(135deg, #60a5fa, #4f46e5);
+            top: -20px;
+            right: -20px;
+        }
+
+        .hero-bg-2 {
+            background: linear-gradient(135deg, #a78bfa, #ec4899);
+            bottom: -20px;
+            left: -20px;
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .stat-item:nth-child(1) h3 { color: #3b82f6; }
+        .stat-item:nth-child(2) h3 { color: #10b981; }
+        .stat-item:nth-child(3) h3 { color: #8b5cf6; }
+        .stat-item:nth-child(4) h3 { color: #4f46e5; }
+
+        .stat-item p {
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 120px 0;
+            background: linear-gradient(135deg, #f9fafb, #e0f2fe);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-header h2 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 24px;
+        }
+
+        .section-header p {
+            font-size: 20px;
+            color: #6b7280;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #4f46e5);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .feature:hover::before {
+            transform: scaleX(1);
+        }
+
+        .btn-tecnologia {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            padding: 12px 32px;
+            border: none;
+            border-radius: 16px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 24px;
+            display: inline-block;
+        }
+
+        .btn-tecnologia:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-gestao {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 12px 32px;
+            border: none;
+            border-radius: 16px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 24px;
+            display: inline-block;
+        }
+
+        .btn-gestao:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-pratica {
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            color: white;
+            padding: 12px 32px;
+            border: none;
+            border-radius: 16px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 24px;
+            display: inline-block;
+        }
+
+        .btn-pratica:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
+        }
+
+        .feature p {
+            color: #6b7280;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .feature img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 16px;
+            transition: transform 0.5s ease;
+        }
+
+        .feature:hover img {
+            transform: scale(1.1);
+        }
+
+        .feature-image-container {
+            overflow: hidden;
+            border-radius: 16px;
+        }
+
+        /* About Section */
+        .about {
+            padding: 120px 0;
+            background: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 24px;
+        }
+
+        .about-text > p {
+            font-size: 20px;
+            color: #6b7280;
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        .about-features {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .about-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .about-feature-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 20px;
+        }
+
+        .about-feature:nth-child(1) .about-feature-icon {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+        }
+
+        .about-feature:nth-child(2) .about-feature-icon {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+        }
+
+        .about-feature:nth-child(3) .about-feature-icon {
+            background: rgba(139, 92, 246, 0.1);
+            color: #8b5cf6;
+        }
+
+        .about-feature-content h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 8px;
+        }
+
+        .about-feature-content p {
+            color: #6b7280;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-badge {
+            position: absolute;
+            bottom: -24px;
+            left: -24px;
+            background: white;
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .about-badge-icon {
+            color: #3b82f6;
+            font-size: 32px;
+        }
+
+        .about-badge-text h4 {
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .about-badge-text p {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 120px 0;
+            background: linear-gradient(135deg, #f9fafb, #e0f2fe);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 32px;
+        }
+
+        .contact-items {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            background: white;
+            padding: 24px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .contact-item-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 24px;
+        }
+
+        .contact-item:nth-child(1) .contact-item-icon {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+        }
+
+        .contact-item:nth-child(2) .contact-item-icon {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+        }
+
+        .contact-item:nth-child(3) .contact-item-icon {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+        }
+
+        .contact-item:nth-child(4) .contact-item-icon {
+            background: rgba(236, 72, 153, 0.1);
+            color: #ec4899;
+        }
+
+        .contact-item:nth-child(5) .contact-item-icon {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+        }
+
+        .contact-item-content h4 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 4px;
+        }
+
+        .contact-item-content a {
+            font-size: 18px;
+            color: #3b82f6;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item-content a:hover {
+            color: #2563eb;
+        }
+
+        .contact-item-content p {
+            font-size: 14px;
+            color: #6b7280;
+            margin-top: 4px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        .social-link {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 20px;
+        }
+
+        .social-link:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .social-link.email { background: #3b82f6; }
+        .social-link.whatsapp { background: #10b981; }
+        .social-link.facebook { background: #1877f2; }
+        .social-link.instagram { background: #e4405f; }
+        .social-link.linkedin { background: #0077b5; }
+
+        /* Contact Form */
+        .contact-form {
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 32px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 16px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-submit {
+            width: 100%;
+            background: linear-gradient(135deg, #3b82f6, #4f46e5);
+            color: white;
+            padding: 16px;
+            border: none;
+            border-radius: 16px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(59, 130, 246, 0.3);
+        }
+
+        .form-note {
+            font-size: 14px;
+            color: #6b7280;
+            text-align: center;
+            margin-top: 16px;
+        }
+
+        /* Footer */
+        footer {
+            background: #1f2937;
+            color: white;
+            padding: 80px 0 40px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .footer-brand .logo-icon {
+            background: linear-gradient(135deg, #3b82f6, #4f46e5);
+        }
+
+        .footer-brand h3 {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .footer-brand p {
+            font-size: 14px;
+            color: #9ca3af;
+        }
+
+        .footer-description {
+            color: #9ca3af;
+            margin-bottom: 24px;
+            max-width: 400px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 16px;
+        }
+
+        .footer-social a {
+            color: #9ca3af;
+            font-size: 20px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            color: white;
+        }
+
+        .footer-section h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-section ul li a {
+            color: #9ca3af;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding-top: 32px;
+            text-align: center;
+            color: #9ca3af;
+        }
+
+        /* Floating Elements */
+        .floating-chat {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 1000;
+            background: linear-gradient(135deg, #3b82f6, #4f46e5);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+            animation: bounce 2s infinite;
+        }
+
+        .floating-chat:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 35px rgba(59, 130, 246, 0.4);
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 24px;
+            left: 24px;
+            z-index: 1000;
+            background: #374151;
+            color: white;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: #4b5563;
+            transform: scale(1.1);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 53%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40%, 43% {
+                transform: translateY(-10px);
+            }
+            70% {
+                transform: translateY(-5px);
+            }
+            90% {
+                transform: translateY(-2px);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero h1 span {
+                font-size: 1.8rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .section-header h2 {
+                font-size: 2.5rem;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-text h2 {
+                font-size: 2.5rem;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                text-align: center;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            .hero {
+                padding: 100px 0 60px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero h1 span {
+                font-size: 1.5rem;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .about-text h2 {
+                font-size: 2rem;
+            }
+
+            .contact-form {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">🌐</div>
+                    <div class="logo-text">
+                        <h1>NetoFramework</h1>
+                       
+                    </div>
+                </div>
+                
+                <nav id="nav">
+                    <a href="#home">Início</a>
+                    <a href="#features">Soluções</a>
+                    <a href="#about">Sobre</a>
+                    <a href="#contact">Contato</a>
+                    <a href="#contact" class="cta-button">Começar Projeto</a>
+                </nav>
+
+                <button class="mobile-menu" id="mobileMenu">☰</button>
+            </div>
+
+            <div class="mobile-nav" id="mobileNav">
+                <a href="#home">Início</a>
+                <a href="#features">Soluções</a>
+                <a href="#about">Sobre</a>
+                <a href="#contact">Contato</a>
+                <a href="#contact" class="cta-button">Começar Projeto</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                  
+                    
+                    <h1>
+                        NetoFramework
+                      
+                    </h1>
+                    
+                    <p>
+                        Transformamos ideias em soluções tecnológicas robustas. Especializados em desenvolvimento empresarial, 
+                        gestão de projetos e consultoria em TI para empresas que buscam excelência e inovação.
+                    </p>
+                    
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn-primary">
+                            Solicitar Consultoria →
+                        </a>
+                        <a href="#about" class="btn-secondary">
+                            Ver Portfolio 🌐
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="hero-image">
+                    <div class="hero-card">
+                        <img src="neto.png" alt="Equipe profissional trabalhando">
+                        <h3>Soluções Personalizadas</h3>
+                        <p>Desenvolvemos tecnologias sob medida para o seu negócio</p>
+                    </div>
+                    <div class="hero-bg-1"></div>
+                    <div class="hero-bg-2"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>+10</h3>
+                    <p>Projetos Entregues</p>
+                </div>
+                <div class="stat-item">
+                    <h3>98%</h3>
+                    <p>Satisfação do Cliente</p>
+                </div>
+                <div class="stat-item">
+                    <h3>4+</h3>
+                    <p>Anos de Experiência</p>
+                </div>
+               
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nossas Soluções Empresariais</h2>
+                <p>Oferecemos um portfólio completo de serviços tecnológicos para impulsionar o crescimento do seu negócio</p>
+            </div>
+
+            <div class="features">
+                <div class="feature">
+                    <button class="btn-tecnologia" onclick="window.location.href='informatica.html'">Informática</button>
+                    <p>Descubra as tecnologias de ponta que irão impulsionar o sucesso do seu projeto ou negócio</p>
+                    <div class="feature-image-container">
+                        <img src="como.jpg" alt="Imagem Tecnologias">
+                    </div>
+                </div>
+                
+                <div class="feature">
+                    <button class="btn-gestao" onclick="window.location.href='gestao2.html'">Gestão</button>
+                    <p>Aprimore suas habilidades em gestão empresarial para otimizar o desempenho e o sucesso</p>
+                    <div class="feature-image-container">
+                        <img src="comi.jpg" alt="Imagem Gestão">
+                    </div>
+                </div>
+                
+                <div class="feature">
+                    <button class="btn-pratica" onclick="window.location.href='pratica.html'">Projecto</button>
+                    <p>Explore nossas habilidades e projetos à venda e aprenda com eles para impulsionar seu desenvolvimento.</p>
+                    <div class="feature-image-container">
+                        <img src="comooo.jpg" alt="Imagem Prática">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Por que escolher a NetoFramework?</h2>
+                    <p>
+                        Somos uma empresa especializada em soluções tecnológicas empresariais, com foco em inovação, 
+                        qualidade e resultados para nossos clientes.
+                    </p>
+                    
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <div class="about-feature-icon">🛡️</div>
+                            <div class="about-feature-content">
+                                <h3>Segurança e Confiabilidade</h3>
+                                <p>Implementamos as melhores práticas de segurança em todos os nossos projetos.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="about-feature">
+                            <div class="about-feature-icon">⚡</div>
+                            <div class="about-feature-content">
+                                <h3>Performance Otimizada</h3>
+                                <p>Desenvolvemos soluções rápidas e eficientes que escalam com seu negócio.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="about-feature">
+                            <div class="about-feature-icon">👥</div>
+                            <div class="about-feature-content">
+                                <h3>Suporte Especializado</h3>
+                                <p>Nossa equipe oferece suporte contínuo e treinamento para sua equipe.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-image">
+                    <img src="neto.png" alt="Equipe de desenvolvimento">
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  <!-- Contact Section -->
+<section id="contact" class="contact">
+    <div class="container">
+        <div class="section-header">
+            <h2>Entre em Contato</h2>
+            <p>
+                Estamos prontos para transformar suas ideias em soluções tecnológicas de sucesso. 
+                Entre em contato conosco e vamos discutir seu próximo projeto.
+            </p>
+        </div>
+
+        <div class="contact-content">
+            <div class="contact-info">
+                <h3>Informações de Contato</h3>
+                
+                <div class="contact-items">
+                    <div class="contact-item">
+                        <div class="contact-item-icon"><i class="fas fa-envelope"></i></div>
+                        <div class="contact-item-content">
+                            <h4>Email Corporativo</h4>
+                            <a href="mailto:netoframwork@gmail.com">netoframwork@gmail.com</a>
+                            <p>Resposta em até 2 horas úteis</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-item-icon"><i class="fab fa-whatsapp"></i></div>
+                        <div class="contact-item-content">
+                            <h4>WhatsApp Business</h4>
+                            <a href="  https://chat.whatsapp.com/LeoSc4uAPQ7BUAoMHvJEid">NetoFramework</a>
+                            <p>Atendimento 24/7</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-item-icon"><i class="fab fa-facebook"></i></div>
+                        <div class="contact-item-content">
+                            <h4>Facebook</h4>
+                            <a href="https://www.facebook.com/profile.php?id=61577740561449" target="_blank">Página Oficial</a>
+                            <p>Novidades e atualizações</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-item-icon"><i class="fab fa-instagram"></i></div>
+                        <div class="contact-item-content">
+                            <h4>Instagram</h4>
+                            <a href="https://www.instagram.com/netoframework/" target="_blank">@netoframework</a>
+                            <p>Conteúdo técnico e projetos</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-item-icon"><i class="fab fa-linkedin"></i></div>
+                        <div class="contact-item-content">
+                            <h4>LinkedIn</h4>
+                            <a href="https://www.linkedin.com/in/andersonnetobackend/" target="_blank">andersonnetobackend</a>
+                            <p>Rede profissional</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="social-links">
+                    <a href="mailto:amax28011@gmail.com" class="social-link email"><i class="fas fa-envelope"></i></a>
+                    <a href="                 " class="social-link whatsapp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=100073860318519" target="_blank" class="social-link facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/anderson.python?igsh=MXN1eXJjdHVuZ2FyYg==" target="_blank" class="social-link instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/andersonnetobackend/" target="_blank" class="social-link linkedin"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+
+        <div class="contact-form">
+    <h3>Solicitar Orçamento</h3>
+    
+
+<form id="contactForm" action="processar_orcamento.php" method="POST">
+        <div class="form-group">
+            <label for="name">Nome Completo *</label>
+            <input type="text" id="name" name="name" required placeholder="Seu nome completo">
+        </div>
+        <div class="form-group">
+            <label for="email">Email Corporativo *</label>
+            <input type="email" id="email" name="email" required placeholder="seu.email@empresa.com">
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Telefone de Contato</label>
+            <input type="tel" id="phone" name="phone" placeholder="+351 xxx xxx xxx">
+        </div>
+
+        <div class="form-group">
+            <label for="message">Descrição do Projeto *</label>
+            <textarea id="message" name="message" required placeholder="Descreva seu projeto, necessidades e objetivos..."></textarea>
+        </div>
+
+        <button type="submit" class="form-submit">
+            <i class="fas fa-paper-plane"></i> Enviar Solicitação
+        </button>
+
+        <p class="form-note">
+            * Campos obrigatórios. Responderemos em até 2 horas úteis.
+        </p>
+    </form>
+    <div id="formMessage" style="margin-top: 15px;"></div>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Impede o envio padrão do formulário
+
+            const form = event.target;
+            const formData = new FormData(form);
+            const jsonData = {};
+
+            for (let [key, value] of formData.entries()) {
+                jsonData[key] = value;
+            }
+
+            let messageContainer = document.getElementById('formMessage');
+            if (!messageContainer) {
+                messageContainer = document.createElement('p');
+                messageContainer.id = 'formMessage';
+                form.parentNode.insertBefore(messageContainer, form.nextSibling);
+            }
+            messageContainer.textContent = 'Enviando sua solicitação...';
+            messageContainer.style.color = '#007bff';
+            messageContainer.style.fontWeight = 'bold';
+
+
+            fetch('processar_orcamento.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(jsonData)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro de rede ou servidor com status: ' + response.status);
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    messageContainer.textContent = data.message;
+                    messageContainer.style.color = 'green';
+                    form.reset();
+                } else {
+                    messageContainer.textContent = 'Erro: ' + data.message;
+                    messageContainer.style.color = 'red';
+                }
+            })
+            .catch(error => {
+                console.error('Erro no fetch:', error);
+                messageContainer.textContent = 'Ocorreu um erro ao enviar a solicitação. Tente novamente.';
+                messageContainer.style.color = 'red';
+            });
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div>
+                <div class="footer-brand">
+                    <div class="logo-icon"><i class="fas fa-globe"></i></div>
+                    <div>
+                        <h3>NetoFramework</h3>
+                        <p>Enterprise Solutions</p>
+                    </div>
+                </div>
+                <p class="footer-description">
+                    Transformamos ideias em soluções tecnológicas robustas para empresas que buscam excelência e inovação.
+                </p>
+              
+            </div>
+            
+            <div class="footer-section">
+                <h4>Serviços</h4>
+                <ul>
+                    <li><a href="#">Desenvolvimento Web</a></li>
+                    <li><a href="#">Consultoria em TI</a></li>
+                    <li><a href="#">Gestão de Projetos</a></li>
+                    <li><a href="#">Suporte Técnico</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Empresa</h4>
+                <ul>
+                    <li><a href="#about">Sobre Nós</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                    <li><a href="#">Portfolio</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>© 2024 NetoFramework Enterprise Solutions. Todos os direitos reservados.</p>
+        </div>
+    </div>
+</footer>
+
+    </footer>
+
+    <!-- Floating Elements -->
+  <!-- Chat flutuante -->
+<div class="floating-chat" onclick="openChat()">💬</div>
+
+<!-- Modal do assistente -->
+<div id="chatModal" class="chat-modal">
+  <div class="chat-header">
+    <span>Assistente Neto</span>
+    <span class="close-btn" onclick="closeChat()">×</span>
+  </div>
+  <iframe src="assistenteneto.html"></iframe>
+</div>
+
+
+<style>
+  .floating-chat {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: #3399ff;
+    color: #fff;
+    font-size: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 9999;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: background 0.3s;
+  }
+
+  .floating-chat:hover {
+    background-color: #1e88e5;
+  }
+
+  .chat-modal {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 450px;
+height: 650px;
+
+    background: #fff;
+    border-radius: 20px;
+    border: 2px solid #ccc;
+    display: none;
+    flex-direction: column;
+    z-index: 10000;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+  }
+
+  .chat-header {
+    height: 50px;
+    background-color: #7a35d3; /* violeta */
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    font-weight: 500;
+    font-size: 16px;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .chat-modal iframe {
+    width: 100%;
+    height: calc(100% - 50px);
+    border: none;
+    display: block;
+    border-radius: 0 0 20px 20px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .close-btn {
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+
+  .close-btn:hover {
+    color: #ddd;
+  }
+</style>
+
+
+<script>
+  function openChat() {
+    document.getElementById("chatModal").style.display = "flex";
+  }
+
+  function closeChat() {
+    document.getElementById("chatModal").style.display = "none";
+  }
+</script>
+
+    <div class="scroll-top" id="scrollTop" onclick="scrollToTop()">↑</div>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileNav = document.getElementById('mobileNav');
+
+        mobileMenu.addEventListener('click', () => {
+            mobileNav.classList.toggle('active');
+            mobileMenu.textContent = mobileNav.classList.contains('active') ? '✕' : '☰';
+        });
+
+        // Header Scroll Effect
+        const header = document.getElementById('header');
+        const scrollTop = document.getElementById('scrollTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+
+            if (window.scrollY > 300) {
+                scrollTop.classList.add('visible');
+            } else {
+                scrollTop.classList.remove('visible');
+            }
+        });
+
+        // Smooth Scrolling
+        function scrollToContact() {
+            document.getElementById('contact').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ 
+                top: 0, 
+                behavior: 'smooth' 
+            });
+        }
+
+        // Form Submission
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(contactForm);
+            const name = formData.get('name');
+            
+            alert(`Obrigado ${name}! Sua mensagem foi recebida. Entraremos em contato em breve.`);
+            contactForm.reset();
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                
+                // Close mobile menu if open
+                if (mobileNav.classList.contains('active')) {
+                    mobileNav.classList.remove('active');
+                    mobileMenu.textContent = '☰';
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.feature, .stat-item, .about-feature, .contact-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+        function openChat() {
+    document.getElementById("chatModal").style.display = "flex";
+  }
+
+  function closeChat() {
+    document.getElementById("chatModal").style.display = "none";
+  }
+    </script>
+    
+</body>
+</html>

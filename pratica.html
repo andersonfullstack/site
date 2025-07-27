@@ -1,0 +1,838 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Explore nossas habilidades e projetos disponíveis para compra e aprendizado, e dê um passo à frente no seu desenvolvimento profissional." />
+    <title>Projecto - Explore Habilidades e Projetos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+            colors: {
+              blue: {
+                50: '#f0f7ff',
+                100: '#e0eefe',
+                200: '#bcdafd',
+                300: '#8abefa',
+                400: '#529bf8',
+                500: '#2c7df3',
+                600: '#1562e6',
+                700: '#124fd1',
+                800: '#1341aa',
+                900: '#153a85',
+              },
+
+
+
+
+
+              
+              orange: {
+                50: '#fff8f0',
+                100: '#feeedd',
+                200: '#fdd8b5',
+                300: '#fbbb83',
+                400: '#f8964d',
+                500: '#f67422',
+                600: '#e7530f',
+                700: '#c0390f',
+                800: '#9a2e15',
+                900: '#7d2814',
+              },
+            },
+          },
+        },
+      }
+    </script>
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+      html {
+  scroll-behavior: smooth;
+}
+
+.separador {
+  border-bottom: 8px solid transparent;
+  margin: 10px 0;
+}
+
+
+    </style>
+  </head>
+  <body>
+    <div class="min-h-screen bg-white">
+      <!-- Header -->
+      <header class="fixed top-0 left-0 right-0 z-50 bg-white shadow-md py-3">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="20" x2="12" y2="10"></line>
+                <line x1="18" y1="20" x2="18" y2="4"></line>
+                <line x1="6" y1="20" x2="6" y2="16"></line>
+              </svg>
+              <span class="text-2xl font-bold text-gray-900">NetoFramework</span>
+            </div>
+            
+            <nav class="hidden md:flex items-center space-x-8">
+              <a href="#inicio" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Início</a>
+              <a href="#habilidades" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Habilidades</a>
+              <a href="#projetos" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Projetos</a>
+              <a href="#aprendizado" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Aprendizado</a>
+              <a href="#contato" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Contato</a>
+            </nav>
+            
+           <button onclick="window.location.href=' https://www.wildcodeschool.com/'" class="bg-blue-600 text-white px-4 py-2 rounded-md font-medium hover:bg-blue-700 transition-colors hidden md:block">
+  Iniciar Curso
+</button>
+
+            
+            <button class="md:hidden text-gray-700">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-16 6h16"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <!-- Hero Section -->
+        <section id="inicio" class="pt-32 pb-20 bg-gradient-to-br from-blue-50 to-indigo-50">
+          <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center">
+              <div class="lg:w-1/2 mb-10 lg:mb-0 lg:pr-10">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
+                  Explore nossas habilidades e <span class="text-blue-600">projetos</span>
+                </h1>
+                <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                  Dê um passo à frente no seu desenvolvimento profissional com recursos de alta qualidade para aprendizado e projetos prontos para uso.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                  
+                    
+                    
+                    
+                    <button
+  onclick="document.getElementById('projetos').scrollIntoView({ behavior: 'smooth' });"
+  class="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors"
+>
+  Ver projeto
+</button>
+
+                    
+                    
+                    
+                    
+                  
+                  
+ 
+
+               
+               
+               
+                  </div>
+                <div class="mt-8 flex items-center space-x-2">
+                  <div class="flex -space-x-2">
+                    <img src="ed.jpg" alt="User avatar" class="w-10 h-10 rounded-full border-2 border-white">
+                    <img src="mica1.jpg" alt="User avatar" class="w-10 h-10 rounded-full border-2 border-white">
+                    <img src="ander.png" alt="User avatar" class="w-10 h-10 rounded-full border-2 border-white">
+                    <img src="nelita" alt="User avatar" class="w-10 h-10 rounded-full border-2 border-white">
+                    <img src="osmar" alt="User avatar" class="w-10 h-10 rounded-full border-2 border-white">
+                    
+
+                  </div>
+                  <div class="text-gray-600">
+                    <span class="font-bold text-blue-600">+10</span> Profissionais capacitados
+                  </div>
+                </div>
+              </div>
+              <div class="lg:w-1/2 relative">
+                <div class="rounded-lg overflow-hidden shadow-2xl transform transition-transform hover:scale-105">
+                  <img 
+                    src="neto.png" 
+                    alt="Team working together" 
+                    class="w-full h-auto rounded-lg"
+                  >
+                </div>
+                <div class="absolute -bottom-6 -left-6 bg-white rounded-lg shadow-lg p-4 w-48 transform transition-transform hover:scale-105">
+                  <div class="flex items-center mb-2">
+                    <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 mr-2">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                      </svg>
+                    </div>
+                    <span class="font-bold text-gray-900">Projetos</span>
+                  </div>
+                  <p class="text-sm text-gray-600">+10 projetos disponíveis</p>
+                </div>
+                <div class="absolute -top-6 -right-6 bg-white rounded-lg shadow-lg p-4 w-48 transform transition-transform hover:scale-105">
+                  <div class="flex items-center mb-2">
+                    <div class="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center text-orange-600 mr-2">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                      </svg>
+                    </div>
+                    <span class="font-bold text-gray-900">Cursos</span>
+                  </div>
+                  <p class="text-sm text-gray-600">+20 cursos para aprendizado</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="habilidades" class="py-20 bg-gray-50">
+          <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Nossas Habilidades</h2>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Aprimore suas habilidades profissionais com nossos conteúdos especializados e projetos práticos.
+              </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <!-- Skill Card 1 -->
+              <div class="bg-white rounded-lg shadow-md p-6 transform transition-all duration-300 hover:-translate-y-2 hover:shadow-lg">
+                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mb-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="16 18 22 12 16 6"></polyline>
+                    <polyline points="8 6 2 12 8 18"></polyline>
+                  </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">Desenvolvimento Frontend</h3>
+                <p class="text-gray-600 mb-4">HTML, CSS, JavaScript, React, Angular, Git e GitHub.</p>
+                <div class="inline-block px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
+                  Avançado
+                </div>
+              </div>
+
+              <!-- Skill Card 2 -->
+              <div class="bg-white rounded-lg shadow-md p-6 transform transition-all duration-300 hover:-translate-y-2 hover:shadow-lg">
+                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mb-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
+                    <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
+                    <path d="M2 2l7.586 7.586"></path>
+                    <circle cx="11" cy="11" r="2"></circle>
+                  </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">Design UX/UI</h3>
+                <p class="text-gray-600 mb-4">Figma, Adobe XD, Princípios de design, prototipagem</p>
+                <div class="inline-block px-3 py-1 rounded-full text-sm font-medium bg-purple-100 text-purple-800">
+                 Intermediário
+                </div>
+              </div>
+
+              <!-- Skill Card 3 -->
+              <div class="bg-white rounded-lg shadow-md p-6 transform transition-all duration-300 hover:-translate-y-2 hover:shadow-lg">
+                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mb-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                    <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                    <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                    <line x1="6" y1="18" x2="6.01" y2="18"></line>
+                  </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">Desenvolvimento Backend</h3>
+                <p class="text-gray-600 mb-4">Node.js, Python, Java, APIs RESTful, GraphQL</p>
+                <div class="inline-block px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
+                 Avançado
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projetos" class="py-20 bg-white">
+          <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">O Que a NetoFramework oferece</h2>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Explore nossos  projetos de Ponta criado pela NetoFramework.
+              </p>
+            </div>
+            
+
+
+
+
+
+
+
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <!-- Project Card 1 -->
+              <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+                <div class="relative">
+                  <img 
+                    src="pc.jpg" 
+                    alt="Desenvolvimento Web Responsivo"
+                    class="w-full h-48 object-cover"
+                  >
+                  <div class="absolute top-4 right-4 bg-orange-500 text-white text-xs px-2 py-1 rounded-md font-medium">
+                    Destaque
+                  </div>
+                </div>
+                <div class="p-6">
+                  <div class="mb-3">
+                    <span class="inline-block px-2 py-1 text-xs font-medium rounded-md bg-blue-100 text-blue-800">
+                      Desenvolvimento
+                    </span>
+                  </div>
+                  <h3 class="text-xl font-bold text-gray-900 mb-2">Manutenção e Suporte Técnico em Computadores</h3>
+                  <p class="text-gray-600 mb-4">Manutenção e suporte técnico para computadores: formatação, limpeza, upgrades, remoção de vírus e otimização. </p>
+                  <div class="flex items-center justify-between">
+                    <span class="text-xl font-bold text-blue-600"></span>
+                   <button onclick="window.location.href=' hard.html '" class="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors">
+                    Ver projecto
+                        </button>
+
+                  </div>
+                </div>
+              </div>
+
+              <!-- Project Card 2 -->
+          
+<div class="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+                <div class="relative">
+                  <img 
+                    src="ht.jpg"  
+                    alt="Desenvolvimento Web Responsivo"
+                    class="w-full h-48 object-cover"
+                  >
+                  <div class="absolute top-4 right-4 bg-orange-500 text-white text-xs px-2 py-1 rounded-md font-medium">
+                    Destaque
+                  </div>
+                </div>
+                <div class="p-6">
+                  <div class="mb-3">
+                    <span class="inline-block px-2 py-1 text-xs font-medium rounded-md bg-blue-100 text-blue-800">
+                      Desenvolvimento
+                    </span>
+                  </div>
+                  <h3 class="text-xl font-bold text-gray-900 mb-2">Desenvolvimento de páginas web e sistemas personalizados</h3>
+                  <p class="text-gray-600 mb-4">Venha conhecer nossas páginas web totalmente personalizadas, desenvolvidas para atender nossos clientes.</p>
+                  <div class="flex items-center justify-between">
+                    <span class="text-xl font-bold text-blue-600"></span>
+                   <button onclick="window.location.href='       web.html      ' " class="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors">
+  Ver projecto
+</button>
+
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <!-- Project Card 3 -->
+              <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+                
+                
+                <div class="relative">
+                  <img 
+                   src="https://images.pexels.com/photos/920382/pexels-photo-920382.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                    
+                    
+                    
+                    alt="Desenvolvimento Web Responsivo"
+                    class="w-full h-48 object-cover"
+                  >
+                  <div class="absolute top-4 right-4 bg-orange-500 text-white text-xs px-2 py-1 rounded-md font-medium">
+                    Destaque
+                  </div>
+                </div>
+               
+               
+               
+               
+                <div class="p-6">
+                  <div class="mb-3">
+                    <span class="inline-block px-2 py-1 text-xs font-medium rounded-md bg-blue-100 text-blue-800">
+                      Desenvolvimento
+                    </span>
+                  </div>
+                  <h3 class="text-xl font-bold text-gray-900 mb-2">Desenvolvimento de estratégias para o sucesso do negócio.</h3>
+                  <p class="text-gray-600 mb-4">Aprenda estratégias com nossos especialistas para alavancar o seu negócio e melhorar seus resultados.</p>
+                  <div class="flex items-center justify-between">
+                    <span class="text-xl font-bold text-blue-600"></span>
+                   <button onclick="window.location.href='     estrategia.html                         '" class="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors">
+  Ver projecto
+</button>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+         
+         
+
+
+
+
+<div class="separador"></div>
+
+
+
+
+
+
+
+
+
+
+
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <!-- Project Card 4-->
+              <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+                <div class="relative">
+                  <img 
+                    src="instala.png" 
+                    alt="Desenvolvimento Web Responsivo"
+                    class="w-full h-48 object-cover"
+                  >
+                  <div class="absolute top-4 right-4 bg-orange-500 text-white text-xs px-2 py-1 rounded-md font-medium">
+                    Destaque
+                  </div>
+                </div>
+                <div class="p-6">
+                  <div class="mb-3">
+                    <span class="inline-block px-2 py-1 text-xs font-medium rounded-md bg-blue-100 text-blue-800">
+                      Desenvolvimento
+                    </span>
+                  </div>
+                  <h3 class="text-xl font-bold text-gray-900 mb-2">Instalação e Configuração de Softwares para PC</h3>
+                  <p class="text-gray-600 mb-4">Instalamos e configuramos softwares essenciais no seu PC com total segurança e desempenho.</p>
+                  <div class="flex items-center justify-between">
+                    <span class="text-xl font-bold text-blue-600"></span>
+                   <button onclick="window.location.href=' ins.html'" class="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors">
+  Ver projecto
+</button>
+
+                  </div>
+                </div>
+              </div>
+
+              <!-- Project Card 5 -->
+          
+<div class="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+                <div class="relative">
+                  <img 
+                    src="c.jpg"  
+                    alt="Desenvolvimento Web Responsivo"
+                    class="w-full h-48 object-cover"
+                  >
+                  <div class="absolute top-4 right-4 bg-orange-500 text-white text-xs px-2 py-1 rounded-md font-medium">
+                    Destaque
+                  </div>
+                </div>
+                <div class="p-6">
+                  <div class="mb-3">
+                    <span class="inline-block px-2 py-1 text-xs font-medium rounded-md bg-blue-100 text-blue-800">
+                      Desenvolvimento
+                    </span>
+                  </div>
+                  <h3 class="text-xl font-bold text-gray-900 mb-2">Desenvolvemos programas personalizados em C# .NET</h3>
+                  <p class="text-gray-600 mb-4">Venha conhecer um dos nossos programas de ponta totalmente personalizados veja e adquira o seu .</p>
+                  <div class="flex items-center justify-between">
+                    <span class="text-xl font-bold text-blue-600"></span>
+                   <button onclick="window.location.href='desenvolvimento.html'" class="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors">
+  Ver projecto
+</button>
+
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <!-- Project Card 6 -->
+              <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+                
+                
+                <div class="relative">
+                  <img 
+                   src="gesta.jpg" 
+                    
+                    
+                    
+                    alt="Desenvolvimento Web Responsivo"
+                    class="w-full h-48 object-cover"
+                  >
+                  <div class="absolute top-4 right-4 bg-orange-500 text-white text-xs px-2 py-1 rounded-md font-medium">
+                    Destaque
+                  </div>
+                </div>
+               
+               
+               
+               
+                <div class="p-6">
+                  <div class="mb-3">
+                    <span class="inline-block px-2 py-1 text-xs font-medium rounded-md bg-blue-100 text-blue-800">
+                      Desenvolvimento
+                    </span>
+                  </div>
+                  <h3 class="text-xl font-bold text-gray-900 mb-2">Especialistas em gestão prontos para impulsionar sua empresa.</h3>
+                  <p class="text-gray-600 mb-4">Venha conhecer  nossos especialistas em gestão e economia para organizar sua empresa.
+
+</p>
+                  <div class="flex items-center justify-between">
+                    <span class="text-xl font-bold text-blue-600"></span>
+                   <button onclick="window.location.href='         especi.html                    ' " class="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors">
+  Ver projecto
+</button>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+         
+         
+         
+         
+         
+         
+          </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="aprendizado" class="py-20 bg-gray-50">
+          <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Por Que Escolher a NetoFramework?</h2>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Oferecemos recursos de alta qualidade para impulsionar seu desenvolvimento profissional.
+              </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <!-- Feature 1 -->
+              <div class="bg-white rounded-lg shadow-md p-6 text-center transform transition-all duration-300 hover:-translate-y-2 hover:shadow-lg">
+                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                  </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">Conteúdo de Qualidade</h3>
+                <p class="text-gray-600">Materiais desenvolvidos por especialistas com vasta experiência no mercado.</p>
+              </div>
+
+              <!-- Feature 2 -->
+              <div class="bg-white rounded-lg shadow-md p-6 text-center transform transition-all duration-300 hover:-translate-y-2 hover:shadow-lg">
+                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                  </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">Projetos Premium</h3>
+                <p class="text-gray-600">Projetos profissionais prontos para implementação imediata.</p>
+              </div>
+
+              <!-- Feature 3 -->
+              <div class="bg-white rounded-lg shadow-md p-6 text-center transform transition-all duration-300 hover:-translate-y-2 hover:shadow-lg">
+                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                  </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">Suporte Técnico</h3>
+                <p class="text-gray-600">Assistência especializada para ajudar em todas as etapas do seu aprendizado.</p>
+              </div>
+
+              <!-- Feature 4 -->
+              <div class="bg-white rounded-lg shadow-md p-6 text-center transform transition-all duration-300 hover:-translate-y-2 hover:shadow-lg">
+                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">Atualizações Constantes</h3>
+                <p class="text-gray-600">Conteúdo sempre atualizado com as últimas tendências e tecnologias do mercado.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- CTA Section -->
+        <section id="contato" class="py-20 bg-blue-600">
+          <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center justify-between">
+              <div class="lg:w-1/2 mb-10 lg:mb-0">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+                  Pronto para dar o próximo passo?
+                </h2>
+                <p class="text-xl text-blue-100 mb-6">
+                Contacte a NetoFramework.
+                </p>
+              </div>
+              
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+            
+            </div>
+          </div>
+        </section>
+      </main>
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <!-- Footer -->
+      <footer class="bg-gray-900 text-gray-300 pt-16 pb-8">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            <div>
+              <div class="flex items-center mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-500 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="20" x2="12" y2="10"></line>
+                  <line x1="18" y1="20" x2="18" y2="4"></line>
+                  <line x1="6" y1="20" x2="6" y2="16"></line>
+                </svg>
+                <span class="text-2xl font-bold text-white">Projecto</span>
+              </div>
+              <p class="mb-6">
+                Explore nossas habilidades e projetos disponíveis para compra e aprendizado, e dê um passo à frente no seu desenvolvimento.
+              </p>
+              <div class="flex space-x-4">
+                <a href="https://www.facebook.com/profile.php?id=61577740561449" class="text-gray-400 hover:text-white transition-colors">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                  </svg>
+                </a>
+                
+                <a href="https://www.instagram.com/netoframework/" class="text-gray-400 hover:text-white transition-colors">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                  </svg>
+                </a>
+                <a href="https://www.linkedin.com/in/neto-framework-1104a5371/" class="text-gray-400 hover:text-white transition-colors">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                    <rect x="2" y="9" width="4" height="12"></rect>
+                    <circle cx="4" cy="4" r="2"></circle>
+                  </svg>
+                </a>
+              </div>
+            </div>
+            
+            <div>
+              <h3 class="text-xl font-bold text-white mb-4">Links Rápidos</h3>
+              <ul class="space-y-3">
+                <li><a href="#inicio" class="hover:text-blue-400 transition-colors">Início</a></li>
+                <li><a href="#habilidades" class="hover:text-blue-400 transition-colors">Habilidades</a></li>
+                <li><a href="#projetos" class="hover:text-blue-400 transition-colors">Projetos</a></li>
+                <li><a href="#aprendizado" class="hover:text-blue-400 transition-colors">Aprendizado</a></li>
+                <li><a href="#contato" class="hover:text-blue-400 transition-colors">Contato</a></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 class="text-xl font-bold text-white mb-4">Categorias</h3>
+              <ul class="space-y-3">
+                <li><a href="#" class="hover:text-blue-400 transition-colors">Desenvolvimento</a></li>
+                <li><a href="#" class="hover:text-blue-400 transition-colors">Design</a></li>
+                <li><a href="#" class="hover:text-blue-400 transition-colors">Marketing</a></li>
+                <li><a href="#" class="hover:text-blue-400 transition-colors">Análise de Dados</a></li>
+                <li><a href="#" class="hover:text-blue-400 transition-colors">Gestão de Projetos</a></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 class="text-xl font-bold text-white mb-4">Contato</h3>
+              <ul class="space-y-3">
+                <li class="flex items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                  </svg>
+                  <span>netoframework@gmail.com
+                </li>
+                <li class="flex items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                  </svg>
+                  <span>(+351)937493326</span>
+                </li>
+                <li class="flex items-start">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-blue-400 mt-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                  <span>Rua Alfredo Pinto<br>Vila Real</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="border-t border-gray-800 pt-8 mt-8 text-sm text-center text-gray-500">
+            <p>&copy; 2025 Projecto. Todos os direitos reservados.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

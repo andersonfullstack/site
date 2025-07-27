@@ -1,0 +1,424 @@
+<!doctype html> <html lang="pt"> <head> <meta charset="UTF-8" /> <link rel="icon" type="image/svg+xml" href="/vite.svg" /> <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <meta name="description" content="Programas personalizados em C# .NET - Soluções sob medida para seu negócio" /> <title>Programas C# .NET Personalizados</title> <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet"> <script src="https://cdn.tailwindcss.com"></script> <style> html { scroll-behavior: smooth; } body { font-family: 'Inter', sans-serif; } h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; } /* Contact Form */ .contact-form { background: white; border-radius: 24px; padding: 40px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1); }
+
+    .contact-form h3 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #1f2937;
+        margin-bottom: 32px;
+    }
+
+    .form-group {
+        margin-bottom: 24px;
+    }
+
+    .form-group label {
+        display: block;
+        font-size: 14px;
+        font-weight: 600;
+        color: #374151;
+        margin-bottom: 8px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 16px;
+        border: 1px solid #d1d5db;
+        border-radius: 16px;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        font-family: inherit;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+        outline: none;
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    .form-group textarea {
+        resize: vertical;
+        min-height: 120px;
+    }
+
+    .form-submit {
+        width: 100%;
+        background: linear-gradient(135deg, #3b82f6, #4f46e5);
+        color: white;
+        padding: 16px;
+        border: none;
+        border-radius: 16px;
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .form-submit:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 30px rgba(59, 130, 246, 0.3);
+    }
+
+    .form-note {
+        font-size: 14px;
+        color: #6b7280;
+        text-align: center;
+        margin-top: 16px;
+    }
+</style>
+</head> <body> <!-- Navbar --> <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="navbar"> <div class="container mx-auto px-4 flex justify-between items-center"> <div class="flex items-center"> <span class="font-bold text-xl text-white" id="logo">NetoFramework</span> </div> <nav> <ul class="flex space-x-6"> <li><a href="#programas" class="font-medium text-white hover:text-blue-300 transition-colors">Programas</a></li> <li><a href="#sobre" class="font-medium text-white hover:text-blue-300 transition-colors">Sobre</a></li> <li><a href="#contato" class="font-medium text-white hover:text-blue-300 transition-colors">Contato</a></li> </ul> </nav> </div> </header>
+
+<!-- Hero Section -->
+<section class="relative h-screen flex items-center">
+  <div class="absolute inset-0 bg-cover bg-center z-0" style="background-image: url('https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg')">
+    <div class="absolute inset-0 bg-blue-900/70 z-0"></div>
+  </div>
+  <div class="container mx-auto px-4 relative z-10">
+    <div class="max-w-3xl">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+        Desenvolvemos Programas Personalizados usando diversas ferrmentas
+      </h1>
+      <p class="text-xl text-white/90 mb-8">
+        Soluções sob medida para impulsionar a eficiência do seu negócio com tecnologia de ponta.
+      </p>
+      <a href="#programas" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105">
+        Conheça Nossos Programas
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Programs Section -->
+<section id="programas" class="py-20 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <div class="max-w-3xl mx-auto text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Nossos Programas</h2>
+      <div class="w-20 h-1 bg-blue-500 mx-auto mb-6"></div>
+      <p class="text-lg text-gray-700">
+        Conheça algumas das nossas soluções personalizadas.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Program Cards -->
+
+
+
+
+
+      <div style="background-color: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: all 0.3s ease;" 
+ onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 6px 16px rgba(0,0,0,0.15)'" 
+ onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)'">
+<!-- Imagem no topo --> <div style="height: 220px; background-color: #f3f4f6;"> <img src="2agri.png" alt="Ícone do Programa" style="width: 100%; height: 100%; object-fit: cover;" /> </div> <!-- Texto --> <div style="padding: 24px;"> <h3 style="font-size: 22px; font-weight: 600; color: #111827; margin-bottom: 12px;">Programa de Gestor Agrícola</h3> <p style="color: #4B5563; font-size: 16px;"> Sistema completo para gestão de empresas, incluindo controle de estoque, vendas, financeiro e relatórios. </p> </div> </div>
+
+      <div style="background-color: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: all 0.3s ease;" 
+ onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 6px 16px rgba(0,0,0,0.15)'" 
+ onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)'">
+<!-- Imagem no topo --> <div style="height: 220px; background-color: #f3f4f6;"> <img src="neto.png" alt="Ícone do Programa" style="width: 100%; height: 100%; object-fit: cover;" /> </div> <!-- Texto --> <div style="padding: 24px;"> <h3 style="font-size: 22px; font-weight: 600; color: #111827; margin-bottom: 12px;">Programa de Gestor Agrícola</h3> <p style="color: #4B5563; font-size: 16px;"> Sistema completo para gestão de empresas, incluindo controle de estoque, vendas, financeiro e relatórios. </p> </div> </div>
+
+      <div style="background-color: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: all 0.3s ease;" 
+ onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 6px 16px rgba(0,0,0,0.15)'" 
+ onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)'">
+<!-- Imagem no topo --> <div style="height: 220px; background-color: #f3f4f6;"> <img src="neto.png" alt="Ícone do Programa" style="width: 100%; height: 100%; object-fit: cover;" /> </div> <!-- Texto --> <div style="padding: 24px;"> <h3 style="font-size: 22px; font-weight: 600; color: #111827; margin-bottom: 12px;">Programa de Gestor Agrícola</h3> <p style="color: #4B5563; font-size: 16px;"> Sistema completo para gestão de empresas, incluindo controle de estoque, vendas, financeiro e relatórios. </p> </div> </div>
+
+      <div style="background-color: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: all 0.3s ease;" 
+ onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 6px 16px rgba(0,0,0,0.15)'" 
+ onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)'">
+<!-- Imagem no topo --> <div style="height: 220px; background-color: #f3f4f6;"> <img src="neto.png" alt="Ícone do Programa" style="width: 100%; height: 100%; object-fit: cover;" /> </div> <!-- Texto --> <div style="padding: 24px;"> <h3 style="font-size: 22px; font-weight: 600; color: #111827; margin-bottom: 12px;">Programa de Gestor Agrícola</h3> <p style="color: #4B5563; font-size: 16px;"> Sistema completo para gestão de empresas, incluindo controle de estoque, vendas, financeiro e relatórios. </p> </div> </div>
+
+      <div style="background-color: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: all 0.3s ease;" 
+ onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 6px 16px rgba(0,0,0,0.15)'" 
+ onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)'">
+<!-- Imagem no topo --> <div style="height: 220px; background-color: #f3f4f6;"> <img src="neto.png" alt="Ícone do Programa" style="width: 100%; height: 100%; object-fit: cover;" /> </div> <!-- Texto --> <div style="padding: 24px;"> <h3 style="font-size: 22px; font-weight: 600; color: #111827; margin-bottom: 12px;">Programa de Gestor Agrícola</h3> <p style="color: #4B5563; font-size: 16px;"> Sistema completo para gestão de empresas, incluindo controle de estoque, vendas, financeiro e relatórios. </p> </div> </div>
+
+      <div style="background-color: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: all 0.3s ease;" 
+ onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 6px 16px rgba(0,0,0,0.15)'" 
+ onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)'">
+<!-- Imagem no topo --> <div style="height: 220px; background-color: #f3f4f6;"> <img src="neto.png" alt="Ícone do Programa" style="width: 100%; height: 100%; object-fit: cover;" /> </div> <!-- Texto --> <div style="padding: 24px;"> <h3 style="font-size: 22px; font-weight: 600; color: #111827; margin-bottom: 12px;">Programa de Gestor Agrícola</h3> <p style="color: #4B5563; font-size: 16px;"> Sistema completo para gestão de empresas, incluindo controle de estoque, vendas, financeiro e relatórios. </p> </div> </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section id="sobre" class="py-20 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6 text-center">Por Que Escolher a NetoFramework?</h2>
+      <div class="w-20 h-1 bg-blue-500 mx-auto mb-12"></div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-gray-50 p-6 rounded-xl transform transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+  <div class="flex items-center mb-4">
+    <div class="text-blue-500 mr-3">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+      </svg>
+    </div>
+    <h3 class="text-xl font-semibold text-gray-900">Inovação Constante</h3>
+  </div>
+  <p class="text-gray-600">Estamos sempre em busca de novas ideias, ferramentas e metodologias para entregar soluções cada vez mais modernas, eficientes e alinhadas às necessidades do mercado.</p>
+</div>
+
+
+        <div class="bg-gray-50 p-6 rounded-xl transform transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+          <div class="flex items-center mb-4">
+            <div class="text-blue-500 mr-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900">Tecnologia de Ponta</h3>
+          </div>
+          <p class="text-gray-600">Utilizamos as mais recentes tecnologias e práticas de desenvolvimento para garantir qualidade e performance.</p>
+        </div>
+
+        <div class="bg-gray-50 p-6 rounded-xl transform transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+          <div class="flex items-center mb-4">
+            <div class="text-blue-500 mr-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900">Suporte Contínuo</h3>
+          </div>
+          <p class="text-gray-600">Oferecemos suporte técnico especializado e manutenção contínua para todos os nossos sistemas.</p>
+        </div>
+
+        <div class="bg-gray-50 p-6 rounded-xl transform transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+          <div class="flex items-center mb-4">
+            <div class="text-blue-500 mr-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900">Soluções Sob Medida</h3>
+          </div>
+          <p class="text-gray-600">Desenvolvemos programas totalmente adaptados às necessidades específicas do seu negócio.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contato" class="py-20 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6 text-center">Entre em Contato</h2>
+      <div class="w-20 h-1 bg-blue-500 mx-auto mb-12"></div>
+      <p class="text-lg text-gray-700 text-center mb-12">
+        Estamos prontos para ajudar a desenvolver a solução perfeita para o seu negócio. Entre em contato conosco!
+      </p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div class="bg-white rounded-xl p-8 shadow-lg">
+          <h3 class="text-2xl font-semibold text-gray-900 mb-6">Informações de Contato</h3>
+          
+          <ul class="space-y-6">
+            <li class="flex items-start">
+              <div class="text-blue-500 mr-4 mt-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              </div>
+              <div>
+                <p class="font-medium text-gray-700">Email:</p>
+                <a href="mailto:netoframework@gmail.com" class="text-blue-600 hover:underline">
+                  netoframework@gmail.com
+                </a>
+              </div>
+            </li>
+            
+            <li class="flex items-start">
+              <div class="text-blue-500 mr-4 mt-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              </div>
+              <div>
+                <p class="font-medium text-gray-700">WhatsApp:</p>
+                <a href="                         " class="text-blue-600 hover:underline">
+                 
+                </a>
+              </div>
+            </li>
+            
+            <li class="flex items-start">
+              <div class="text-blue-500 mr-4 mt-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+              </div>
+              <div>
+                <p class="font-medium text-gray-700">Facebook:</p>
+                <a href="https://www.facebook.com/profile.php?id=61577740561449" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+                 Netoframework
+                </a>
+              </div>
+            </li>
+            
+            <li class="flex items-start">
+              <div class="text-blue-500 mr-4 mt-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+              </div>
+              <div>
+                <p class="font-medium text-gray-700">Instagram:</p>
+                <a href="https://www.instagram.com/netoframework/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+                  @netoframework
+                </a>
+              </div>
+            </li>
+            
+            <li class="flex items-start">
+              <div class="text-blue-500 mr-4 mt-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+              </div>
+              <div>
+                <p class="font-medium text-gray-700">LinkedIn:</p>
+                <a href="https://www.linkedin.com/in/neto-framework-1104a5371/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+                   Netoframework
+                </a>
+              </div>
+            </li>
+          </ul>
+          
+          <div class="flex space-x-4 mt-8">
+            <a href="mailto:netoframework@gmail.com" class="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center hover:bg-blue-600 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            </a>
+            <a href="                     " class="w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center hover:bg-green-600 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=61577740561449" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center hover:bg-blue-700 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+            </a>
+            <a href="https://www.instagram.com/netoframework/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-pink-600 text-white flex items-center justify-center hover:bg-pink-700 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/neto-framework-1104a5371/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-blue-700 text-white flex items-center justify-center hover:bg-blue-800 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            </a>
+          </div>
+        </div>
+        
+       
+<div class="contact-form"> <h3>Solicitar Orçamento</h3> <form id="contactForm" action="processar_orcamento.php" method="POST"> <div class="form-group"> <label for="name">Nome Completo *</label> <input type="text" id="name" name="name" required placeholder="Seu nome completo"> </div> <div class="form-group"> <label for="email">Email Corporativo *</label> <input type="email" id="email" name="email" required placeholder="seu.email@empresa.com"> </div>
+
+    <div class="form-group">
+        <label for="phone">Telefone de Contato</label>
+        <input type="tel" id="phone" name="phone" placeholder="+351 xxx xxx xxx">
+    </div>
+
+    <div class="form-group">
+        <label for="message">Descrição do Projeto *</label>
+        <textarea id="message" name="message" required placeholder="Descreva seu projeto, necessidades e objetivos..."></textarea>
+    </div>
+
+    <button type="submit" class="form-submit">
+        <i class="fas fa-paper-plane"></i> Enviar Solicitação
+    </button>
+
+    <p class="form-note">
+        * Campos obrigatórios. Responderemos em até 2 horas úteis.
+    </p>
+</form>
+<div id="formMessage" style="margin-top: 15px;"></div>
+
+<script>
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Impede o envio padrão do formulário
+
+        const form = event.target;
+        const formData = new FormData(form);
+        const jsonData = {};
+
+        for (let [key, value] of formData.entries()) {
+            jsonData[key] = value;
+        }
+
+        let messageContainer = document.getElementById('formMessage');
+        if (!messageContainer) {
+            messageContainer = document.createElement('p');
+            messageContainer.id = 'formMessage';
+            form.parentNode.insertBefore(messageContainer, form.nextSibling);
+        }
+        messageContainer.textContent = 'Enviando sua solicitação...';
+        messageContainer.style.color = '#007bff';
+        messageContainer.style.fontWeight = 'bold';
+
+
+        fetch('processar_orcamento.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(jsonData)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro de rede ou servidor com status: ' + response.status);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.success) {
+                messageContainer.textContent = data.message;
+                messageContainer.style.color = 'green';
+                form.reset();
+            } else {
+                messageContainer.textContent = 'Erro: ' + data.message;
+                messageContainer.style.color = 'red';
+            }
+        })
+        .catch(error => {
+            console.error('Erro no fetch:', error);
+            messageContainer.textContent = 'Ocorreu um erro ao enviar a solicitação. Tente novamente.';
+            messageContainer.style.color = 'red';
+        });
+    });
+</script>
+</div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+
+
+<script>
+  // Update copyright year
+  document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+  // Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  const logo = document.getElementById('logo');
+  const links = navbar.getElementsByTagName('a');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      navbar.classList.add('bg-white', 'shadow-md', 'py-3');
+      navbar.classList.remove('bg-transparent', 'py-5');
+      logo.classList.remove('text-white');
+      logo.classList.add('text-blue-600');
+      Array.from(links).forEach(link => {
+        link.classList.remove('text-white', 'hover:text-blue-300');
+        link.classList.add('text-gray-800', 'hover:text-blue-600');
+      });
+    } else {
+      navbar.classList.remove('bg-white', 'shadow-md', 'py-3');
+      navbar.classList.add('bg-transparent', 'py-5');
+      logo.classList.add('text-white');
+      logo.classList.remove('text-blue-600');
+      Array.from(links).forEach(link => {
+        link.classList.add('text-white', 'hover:text-blue-300');
+        link.classList.remove('text-gray-800', 'hover:text-blue-600');
+      });
+    }
+  });
+
+  // Contact form handling
+  function handleSubmit(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const name = formData.get('name');
+    alert(`Obrigado ${name}! Sua mensagem foi recebida. Entraremos em contato em breve.`);
+    event.target.reset();
+  }
+</script>
+</body> </html>

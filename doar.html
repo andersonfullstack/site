@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Ajude as crianças de São Tomé e Príncipe com sua doação. Faça a diferença hoje com MBWAY." />
+    <title>Ajuda São Tomé - Doações para Crianças</title>
+    
+    <!-- MBWAY Deep Linking Support -->
+    <meta name="apple-itunes-app" content="app-id=1125864107, app-argument=mbway://">
+    <meta name="google-play-app" content="app-id=pt.sibs.android.mbway">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Ajuda São Tomé - Doações para Crianças" />
+    <meta property="og:description" content="Ajude as crianças de São Tomé e Príncipe com sua doação. Faça a diferença hoje com MBWAY." />
+    <meta property="og:type" content="website" />
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      html { scroll-behavior: smooth; }
+      body { font-family: 'Inter', sans-serif; }
+      h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <!-- Header -->
+      <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent py-5">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+          <div class="flex items-center">
+            <span class="font-bold text-xl text-white">Ajuda São Tomé</span>
+          </div>
+          <nav>
+            <ul class="flex space-x-6">
+              <li><a href="#about" class="font-medium text-white hover:text-blue-600 transition-colors">Sobre</a></li>
+              <li><a href="#donate" class="font-medium text-white hover:text-blue-600 transition-colors">Doar</a></li>
+              <li><button class="font-medium text-white hover:text-blue-600 transition-colors">EN/PT</button></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      <!-- Hero Section -->
+      <section class="relative h-screen flex items-center">
+        <div class="absolute inset-0 bg-cover bg-center z-0" style="background-image: url('https://images.pexels.com/photos/935947/pexels-photo-935947.jpeg'); background-position: center 30%">
+          <div class="absolute inset-0 bg-blue-900/60 z-0"></div>
+        </div>
+        <div class="container mx-auto px-4 relative z-10">
+          <div class="max-w-2xl">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+              Ajude as crianças de São Tomé e Príncipe
+            </h1>
+            <p class="text-xl text-white/90 mb-8">
+              Sua doação pode transformar vidas e trazer esperança para o futuro das crianças santomenses.
+            </p>
+            <a href="#donate" class="inline-block bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-300 transform hover:scale-105">
+              Doar Agora
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+          <div class="max-w-3xl mx-auto text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-6">Sobre Nossa Missão</h2>
+            <div class="w-20 h-1 bg-red-500 mx-auto mb-6"></div>
+            <p class="text-lg text-gray-700">
+              Estamos comprometidos em melhorar a vida das crianças em São Tomé e Príncipe, proporcionando educação, nutrição adequada e cuidados de saúde.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Donation Section -->
+      <section id="donate" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+          <div class="max-w-3xl mx-auto text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-6">Faça Sua Doação</h2>
+            <div class="w-20 h-1 bg-red-500 mx-auto mb-6"></div>
+            <p class="text-lg text-gray-700">
+              Sua contribuição faz a diferença na vida das crianças de São Tomé e Príncipe.
+              Escolha o valor e faça sua doação de forma rápida e segura.
+            </p>
+          </div>
+
+          <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
+            <div class="p-8">
+              <!-- Donation Form -->
+              <div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-6">Escolha o Valor</h3>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+                  <button class="py-3 px-4 rounded-lg border-2 border-gray-200 hover:border-blue-300 text-gray-600 hover:text-blue-500 font-medium transition-all">€5</button>
+                  <button class="py-3 px-4 rounded-lg border-2 border-gray-200 hover:border-blue-300 text-gray-600 hover:text-blue-500 font-medium transition-all">€15</button>
+                  <button class="py-3 px-4 rounded-lg border-2 border-gray-200 hover:border-blue-300 text-gray-600 hover:text-blue-500 font-medium transition-all">€30</button>
+                  <button class="py-3 px-4 rounded-lg border-2 border-gray-200 hover:border-blue-300 text-gray-600 hover:text-blue-500 font-medium transition-all">€50</button>
+                </div>
+
+                <div class="mb-8">
+                  <label for="customAmount" class="block text-sm font-medium text-gray-700 mb-2">
+                    Ou insira um valor personalizado
+                  </label>
+                  <div class="relative">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                      <span class="text-gray-500">€</span>
+                    </div>
+                    <input type="number" id="customAmount" class="block w-full pl-8 pr-12 py-3 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" placeholder="Outro valor" min="1">
+                  </div>
+                </div>
+
+                <button onclick="handleMbwayPayment()" class="w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-[1.02]">
+                  Prosseguir para Doação MBWAY
+                </button>
+              </div>
+
+              <!-- MBWAY Info -->
+              <div class="mt-8 pt-6 border-t border-gray-200">
+                <h4 class="text-lg font-semibold text-gray-800 mb-4">Doação direta via MBWAY</h4>
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <p class="text-sm text-gray-600 mb-1">Número MBWAY:</p>
+                      <p class="text-xl font-medium text-blue-800 tracking-wide">937493326</p>
+                    </div>
+                    <button onclick="copyToClipboard('937493326')" class="flex items-center bg-white hover:bg-gray-50 border border-gray-200 text-gray-700 px-3 py-2 rounded transition-colors">
+                      <span class="text-sm">Copiar</span>
+                    </button>
+                  </div>
+                  <div class="mt-3 text-sm text-gray-600">
+                    <p>1. Abra o aplicativo MBWAY no seu telemóvel</p>
+                    <p>2. Selecione "Enviar dinheiro" e introduza este número</p>
+                    <p>3. Insira o valor da sua doação e confirme</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="bg-gray-900 text-gray-300 pt-16 pb-8">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            <div>
+              <div class="flex items-center mb-4">
+                <span class="text-2xl font-bold text-white">Ajuda São Tomé</span>
+              </div>
+              <p class="mb-6">
+                Explore nossas habilidades e projetos disponíveis para compra e aprendizado, 
+                e dê um passo à frente no seu desenvolvimento.
+              </p>
+              <div class="flex space-x-4">
+                <a href="https://www.facebook.com/profile.php?id=100073860318519" class="text-gray-400 hover:text-white transition-colors">
+                  <span class="sr-only">Facebook</span>
+                  <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                  </svg>
+                </a>
+                <a href="https://www.instagram.com/anderson.python?igsh=MXN1eXJjdHVuZ2FyYg==" class="text-gray-400 hover:text-white transition-colors">
+                  <span class="sr-only">Instagram</span>
+                  <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                  </svg>
+                </a>
+                <a href="https://www.linkedin.com/in/andersonnetobackend/" class="text-gray-400 hover:text-white transition-colors">
+                  <span class="sr-only">LinkedIn</span>
+                  <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                    <rect x="2" y="9" width="4" height="12"></rect>
+                    <circle cx="4" cy="4" r="2"></circle>
+                  </svg>
+                </a>
+              </div>
+            </div>
+            
+            <div>
+              <h3 class="text-xl font-bold text-white mb-4">Links Rápidos</h3>
+              <ul class="space-y-3">
+                <li><a href="#inicio" class="hover:text-blue-400 transition-colors">Início</a></li>
+                <li><a href="#about" class="hover:text-blue-400 transition-colors">Sobre</a></li>
+                <li><a href="#donate" class="hover:text-blue-400 transition-colors">Doar</a></li>
+                <li><a href="#projetos" class="hover:text-blue-400 transition-colors">Projetos</a></li>
+                <li><a href="#contato" class="hover:text-blue-400 transition-colors">Contato</a></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 class="text-xl font-bold text-white mb-4">Categorias</h3>
+              <ul class="space-y-3">
+                <li><a href="#" class="hover:text-blue-400 transition-colors">Desenvolvimento</a></li>
+                <li><a href="#" class="hover:text-blue-400 transition-colors">Design</a></li>
+                <li><a href="#" class="hover:text-blue-400 transition-colors">Marketing</a></li>
+                <li><a href="#" class="hover:text-blue-400 transition-colors">Análise de Dados</a></li>
+                <li><a href="#" class="hover:text-blue-400 transition-colors">Gestão de Projetos</a></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 class="text-xl font-bold text-white mb-4">Contato</h3>
+              <ul class="space-y-3">
+                <li class="flex items-center">
+                  <svg class="h-5 w-5 mr-3 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                  </svg>
+                  <span>amax28011@gmail.com</span>
+                </li>
+                <li class="flex items-center">
+                  <svg class="h-5 w-5 mr-3 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                  </svg>
+                  <span>(+351) 937493326</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="h-5 w-5 mr-3 text-blue-400 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                  <span>Rua Alfredo Pinto<br>Vila Real</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="border-t border-gray-800 pt-8 mt-8 text-sm text-center text-gray-500">
+            <p>&copy; 2025 Ajuda São Tomé. Todos os direitos reservados.</p>
+            <p class="mt-2">Desenvolvido por NetoFramework</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+      // Handle MBWAY payment
+      function handleMbwayPayment() {
+        const customAmount = document.getElementById('customAmount').value;
+        const selectedButton = document.querySelector('.border-blue-600');
+        const amount = customAmount || (selectedButton ? selectedButton.textContent.replace('€', '') : '0');
+        const mbwayNumber = '937493326';
+        
+        // Create MBWAY deep link
+        const mbwayDeepLink = `mbway://pay?v=01&e=${mbwayNumber}&m=Doação São Tomé&a=${amount}`;
+        
+        // Try to open MBWAY app
+        window.location.href = mbwayDeepLink;
+        
+        // Show instructions after a short delay
+        setTimeout(() => {
+          alert(`Por favor, complete o pagamento de €${amount} usando o MBWAY:\n\n1. Abra o aplicativo MBWAY\n2. Selecione "Pagar"\n3. Digite o número ${mbwayNumber}\n4. Confirme o valor de €${amount}`);
+        }, 1500);
+      }
+
+      // Copy to clipboard function
+      function copyToClipboard(text) {
+        navigator.clipboard.writeText(text)
+          .then(() => {
+            const button = event.target.closest('button');
+            const originalText = button.innerHTML;
+            button.innerHTML = '<span class="text-sm">Copiado!</span>';
+            setTimeout(() => {
+              button.innerHTML = originalText;
+            }, 2000);
+          })
+          .catch(err => {
+            console.error('Failed to copy text: ', err);
+          });
+      }
+
+      // Handle donation amount selection
+      document.querySelectorAll('.grid button').forEach(button => {
+        button.addEventListener('click', () => {
+          document.querySelectorAll('.grid button').forEach(b => {
+            b.classList.remove('border-blue-600', 'bg-blue-50', 'text-blue-700');
+            b.classList.add('border-gray-200', 'text-gray-600');
+          });
+          button.classList.remove('border-gray-200', 'text-gray-600');
+          button.classList.add('border-blue-600', 'bg-blue-50', 'text-blue-700');
+          document.getElementById('customAmount').value = '';
+        });
+      });
+
+      // Handle scroll header
+      window.addEventListener('scroll', () => {
+        const header = document.querySelector('header');
+        if (window.scrollY > 10) {
+          header.classList.remove('bg-transparent', 'py-5');
+          header.classList.add('bg-white', 'shadow-md', 'py-3');
+          document.querySelectorAll('header a, header button, header span').forEach(el => {
+            el.classList.remove('text-white');
+            el.classList.add('text-gray-700');
+          });
+        } else {
+          header.classList.add('bg-transparent', 'py-5');
+          header.classList.remove('bg-white', 'shadow-md', 'py-3');
+          document.querySelectorAll('header a, header button, header span').forEach(el => {
+            el.classList.add('text-white');
+            el.classList.remove('text-gray-700');
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

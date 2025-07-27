@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Aprenda estratégias de negócios eficazes para impulsionar seu sucesso empresarial." />
+    <title>Estratégias de Negócios - NetoFramework</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      
+      body {
+        font-family: 'Inter', sans-serif;
+        line-height: 1.6;
+      }
+      
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Poppins', sans-serif;
+      }
+      
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+      
+      .fade-in.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      .slide-in-left {
+        opacity: 0;
+        transform: translateX(-50px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+      
+      .slide-in-left.active {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      
+      .slide-in-right {
+        opacity: 0;
+        transform: translateX(50px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+      
+      .slide-in-right.active {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      
+      .header-scrolled {
+        background-color: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      }
+      
+      .header-scrolled .nav-link {
+        color: #1f2937;
+      }
+      
+      .header-scrolled .nav-link:hover {
+        color: #3b82f6;
+      }
+      
+      .header-scrolled .brand {
+        color: #3b82f6;
+      }
+      
+      .hero-gradient {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+      
+      .card-hover {
+        transition: all 0.3s ease;
+      }
+      
+      .card-hover:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+      
+      .btn-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        transition: all 0.3s ease;
+      }
+      
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+      }
+      
+      .floating-animation {
+        animation: float 6s ease-in-out infinite;
+      }
+      
+      @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+        100% { transform: translateY(0px); }
+      }
+      
+      .pulse-animation {
+        animation: pulse 2s infinite;
+      }
+      
+      @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+      }
+      
+      .gradient-text {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      
+      .mobile-menu {
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+      }
+      
+      .mobile-menu.active {
+        transform: translateX(0);
+      }
+      
+     
+      
+      .section-padding {
+        padding: 5rem 0;
+      }
+      
+      @media (max-width: 768px) {
+        .section-padding {
+          padding: 3rem 0;
+        }
+      }
+      
+      .stats-number {
+        font-size: 3rem;
+        font-weight: 800;
+        line-height: 1;
+      }
+      
+      .testimonial-card {
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      }
+      /* Contact Form */
+        .contact-form {
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 32px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 16px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-submit {
+            width: 100%;
+            background: linear-gradient(135deg, #3b82f6, #4f46e5);
+            color: white;
+            padding: 16px;
+            border: none;
+            border-radius: 16px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(59, 130, 246, 0.3);
+        }
+
+        .form-note {
+            font-size: 14px;
+            color: #6b7280;
+            text-align: center;
+            margin-top: 16px;
+        }
+    </style>
+  </head>
+  <body class="overflow-x-hidden">
+    <!-- Header -->
+    <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4">
+      <div class="container mx-auto px-4 flex justify-between items-center">
+        <div class="flex items-center">
+          <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mr-3">
+            <i class="fas fa-chart-line text-white text-lg"></i>
+          </div>
+          <span class="brand font-bold text-2xl text-white transition-colors duration-300">NetoFramework</span>
+        </div>
+        
+        <nav class="hidden md:block">
+          <ul class="flex space-x-8">
+            <li><a href="#home" class="nav-link font-medium text-white hover:text-blue-300 transition-colors duration-300">Início</a></li>
+            <li><a href="#stats" class="nav-link font-medium text-white hover:text-blue-300 transition-colors duration-300">Resultados</a></li>
+            <li><a href="#metodologia" class="nav-link font-medium text-white hover:text-blue-300 transition-colors duration-300">Metodologia</a></li>
+            <li><a href="#beneficios" class="nav-link font-medium text-white hover:text-blue-300 transition-colors duration-300">Benefícios</a></li>
+            
+            <li><a href="#contato" class="nav-link font-medium text-white hover:text-blue-300 transition-colors duration-300">Contato</a></li>
+          </ul>
+        </nav>
+        
+        <button id="mobileMenuBtn" class="md:hidden text-white text-2xl focus:outline-none">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+      
+      <!-- Mobile Menu -->
+      <div id="mobileMenu" class="mobile-menu fixed top-0 right-0 h-full w-64 bg-white shadow-2xl md:hidden z-40">
+        <div class="p-6">
+          <button id="closeMobileMenu" class="absolute top-4 right-4 text-gray-600 text-2xl">
+            <i class="fas fa-times"></i>
+          </button>
+          <nav class="mt-12">
+            <ul class="space-y-6">
+              <li><a href="#home" class="mobile-nav-link block text-gray-700 hover:text-blue-600 font-medium text-lg transition-colors">Início</a></li>
+              <li><a href="#metodologia" class="mobile-nav-link block text-gray-700 hover:text-blue-600 font-medium text-lg transition-colors">Metodologia</a></li>
+              <li><a href="#beneficios" class="mobile-nav-link block text-gray-700 hover:text-blue-600 font-medium text-lg transition-colors">Benefícios</a></li>
+              <li><a href="#stats" class="mobile-nav-link block text-gray-700 hover:text-blue-600 font-medium text-lg transition-colors">Resultados</a></li>
+              <li><a href="#contato" class="mobile-nav-link block text-gray-700 hover:text-blue-600 font-medium text-lg transition-colors">Contato</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center">
+      <div class="absolute inset-0 bg-cover bg-center z-0" style="background-image: url('https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=2')">
+        <div class="absolute inset-0 hero-gradient opacity-90"></div>
+      </div>
+      
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div class="fade-in">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+              Desenvolvimento de <span class="text-blue-300">Estratégias</span> para o Sucesso do Negócio
+            </h1>
+            <p class="text-xl text-white/90 mb-8 leading-relaxed">
+              Aprenda a criar estratégias inovadoras e eficazes para impulsionar seu negócio ao próximo nível com metodologias comprovadas.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a href="#contato" class="btn-primary inline-flex items-center justify-center text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300">
+                <i class="fas fa-rocket mr-2"></i>
+                Comece Agora
+              </a>
+              <a href="#metodologia" class="inline-flex items-center justify-center border-2 border-white text-white font-semibold py-4 px-8 rounded-xl hover:bg-white hover:text-gray-900 transition-all duration-300">
+                <i class="fas fa-play mr-2"></i>
+                Saiba Mais
+              </a>
+            </div>
+          </div>
+          
+          
+        </div>
+      </div>
+      
+      <!-- Scroll Indicator -->
+      <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <i class="fas fa-chevron-down text-white text-2xl"></i>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="stats" class="section-padding bg-gray-900 text-white">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div class="text-center fade-in">
+            <div class="stats-number gradient-text mb-2">+5</div>
+            <p class="text-gray-300 text-lg">Clientes satisfeitos</p>
+          </div>
+          <div class="text-center fade-in">
+            <div class="stats-number gradient-text mb-2">95%</div>
+            <p class="text-gray-300 text-lg">Satisfação dos clientes</p>
+          </div>
+          <div class="text-center fade-in">
+            <div class="stats-number gradient-text mb-2">+3</div>
+            <p class="text-gray-300 text-lg">Anos de Experiência</p>
+          </div>
+          <div class="text-center fade-in">
+            <div class="stats-number gradient-text mb-2">80%</div>
+            <p class="text-gray-300 text-lg">Aumento de produtiviade</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Metodologia Section -->
+    <section id="metodologia" class="section-padding bg-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center mb-16 fade-in">
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Nossa Metodologia</h2>
+          <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mb-6 rounded-full"></div>
+          <p class="text-xl text-gray-600 leading-relaxed">
+            Uma abordagem comprovada e sistemática para desenvolver estratégias de negócios eficazes e alcançar resultados excepcionais.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          <div class="card-hover bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8 border border-blue-100">
+            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6">
+              <span class="text-2xl font-bold text-white">01</span>
+            </div>
+            <h3 class="text-2xl font-semibold text-gray-900 mb-4">Análise de Mercado</h3>
+            <p class="text-gray-600 mb-4">Identificação de tendências, oportunidades e ameaças no seu setor de atuação através de análise profunda.</p>
+            <ul class="text-sm text-gray-500 space-y-2">
+              <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Análise da concorrência</li>
+              <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Identificação de oportunidades</li>
+              <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Avaliação de riscos</li>
+            </ul>
+          </div>
+
+          <div class="card-hover bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-8 border border-purple-100">
+            <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6">
+              <span class="text-2xl font-bold text-white">02</span>
+            </div>
+            <h3 class="text-2xl font-semibold text-gray-900 mb-4">Planejamento Estratégico</h3>
+            <p class="text-gray-600 mb-4">Desenvolvimento de objetivos claros e planos de ação personalizados para sua realidade empresarial.</p>
+            <ul class="text-sm text-gray-500 space-y-2">
+              <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Definição de metas SMART</li>
+              <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Roadmap detalhado</li>
+              <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Planos de contingência</li>
+            </ul>
+          </div>
+
+          <div class="card-hover bg-gradient-to-br from-green-50 to-emerald-100 rounded-2xl p-8 border border-green-100">
+            <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mb-6">
+              <span class="text-2xl font-bold text-white">03</span>
+            </div>
+            <h3 class="text-2xl font-semibold text-gray-900 mb-4">Implementação e Monitoramento</h3>
+            <p class="text-gray-600 mb-4">Execução eficiente e acompanhamento contínuo dos resultados com ajustes em tempo real.</p>
+            <ul class="text-sm text-gray-500 space-y-2">
+              <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Execução supervisionada</li>
+              <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>KPIs em tempo real</li>
+              <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Otimização contínua</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8 md:p-12 text-center fade-in">
+          <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Pronto para Transformar seu Negócio?</h3>
+          <p class="text-gray-600 mb-6 text-lg">Agende uma consultoria gratuita e descubra como podemos ajudar você.</p>
+          <a href="#contato" class="btn-primary inline-flex items-center text-white font-semibold py-3 px-8 rounded-xl">
+            <i class="fas fa-calendar-alt mr-2"></i>
+            Agendar Consultoria Gratuita
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefícios Section -->
+    <section id="beneficios" class="section-padding bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center mb-16 fade-in">
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Benefícios Transformadores</h2>
+          <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mb-6 rounded-full"></div>
+          <p class="text-xl text-gray-600 leading-relaxed">
+            Descubra como nossa metodologia pode revolucionar seu negócio e gerar resultados extraordinários.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+          <div class="slide-in-left">
+            <h3 class="text-3xl font-bold text-gray-900 mb-6">Crescimento Sustentável</h3>
+            <div class="space-y-6">
+              <div class="flex items-start">
+                <div class="w-12 h-12 bg-gradient-to-br from-green-400 to-green-500 rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
+                  <i class="fas fa-chart-line text-white"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-900 mb-2">Crescimento Sustentável e Lucrativo</h4>
+                  <p class="text-gray-600">Estratégias personalizadas para impulsionar seu negócio, combinando inovação e eficiência para garantir receita crescente e sustentável.
+
+</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start">
+                <div class="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-500 rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
+                  <i class="fas fa-cogs text-white"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-900 mb-2">Otimização de Processos</h4>
+                  <p class="text-gray-600">Aperfeiçoamento contínuo para garantir operações mais ágeis e eficazes.</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start">
+                <div class="w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-500 rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
+                  <i class="fas fa-rocket text-white"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-900 mb-2">Melhoria na Eficiência Operacional</h4>
+                  <p class="text-gray-600">Automação e otimização que resultam em maior produtividade e menores custos.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="slide-in-right">
+            <div class="bg-white rounded-2xl p-8 shadow-xl">
+              <div class="text-center mb-6">
+                <div class="w-20 h-20 bg-gradient-to-br from-green-400 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <i class="fas fa-trophy text-white text-2xl"></i>
+                </div>
+                <h4 class="text-2xl font-bold text-gray-900">Resultados Comprovados</h4>
+              </div>
+              <div class="grid grid-cols-2 gap-4 text-center">
+                <div class="bg-gray-50 rounded-xl p-4">
+                  <div class="text-2xl font-bold text-green-600">+80%</div>
+                  <div class="text-sm text-gray-600">Crescimento Médio</div>
+                </div>
+                <div class="bg-gray-50 rounded-xl p-4">
+                  <div class="text-2xl font-bold text-blue-600">-40%</div>
+                  <div class="text-sm text-gray-600">Redução de Custos</div>
+                </div>
+                
+                <div class="bg-gray-50 rounded-xl p-4">
+                  <div class="text-2xl font-bold text-orange-600">98%</div>
+                  <div class="text-sm text-gray-600">Satisfação Cliente</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div class="slide-in-left">
+            <div class="bg-white rounded-2xl p-8 shadow-xl">
+              <h4 class="text-2xl font-bold text-gray-900 mb-6 text-center">Vantagem Competitiva</h4>
+              <div class="space-y-4">
+                <div class="flex items-center justify-between">
+                  <span class="text-gray-600">Diferenciação no Mercado</span>
+                  <div class="w-32 bg-gray-200 rounded-full h-2">
+                    <div class="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full" style="width: 95%"></div>
+                  </div>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="text-gray-600">Inovação em Produtos</span>
+                  <div class="w-32 bg-gray-200 rounded-full h-2">
+                    <div class="bg-gradient-to-r from-green-500 to-blue-500 h-2 rounded-full" style="width: 88%"></div>
+                  </div>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="text-gray-600">Fortalecimento da Marca</span>
+                  <div class="w-32 bg-gray-200 rounded-full h-2">
+                    <div class="bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full" style="width: 92%"></div>
+                  </div>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="text-gray-600">Satisfação do Cliente</span>
+                  <div class="w-32 bg-gray-200 rounded-full h-2">
+                    <div class="bg-gradient-to-r from-orange-500 to-red-500 h-2 rounded-full" style="width: 97%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="slide-in-right">
+            <h3 class="text-3xl font-bold text-gray-900 mb-6">Vantagem Competitiva</h3>
+            <div class="space-y-6">
+              <div class="flex items-start">
+                <div class="w-12 h-12 bg-gradient-to-br from-red-400 to-pink-500 rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
+                  <i class="fas fa-star text-white"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-900 mb-2">Diferenciação no Mercado</h4>
+                  <p class="text-gray-600">Posicionamento único que destaca sua empresa da concorrência.</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start">
+                <div class="w-12 h-12 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
+                  <i class="fas fa-lightbulb text-white"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-900 mb-2">Inovação em Produtos e Serviços</h4>
+                  <p class="text-gray-600">Desenvolvimento de soluções inovadoras que atendem às necessidades do mercado.</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start">
+                <div class="w-12 h-12 bg-gradient-to-br from-indigo-400 to-purple-500 rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
+                  <i class="fas fa-gem text-white"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-900 mb-2">Fortalecimento da Marca</h4>
+                  <p class="text-gray-600">Construção de uma marca forte e reconhecida no mercado.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+   
+
+    <!-- Contato Section -->
+    <section id="contato" class="section-padding bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center mb-16 fade-in">
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Entre em Contato</h2>
+          <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mb-6 rounded-full"></div>
+          <p class="text-xl text-gray-600 leading-relaxed">
+            Estamos prontos para ajudar você a desenvolver estratégias eficazes para o seu negócio. Entre em contato conosco hoje mesmo!
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div class="slide-in-left">
+            <div class="bg-white rounded-2xl p-8 shadow-xl">
+              <h3 class="text-2xl font-semibold text-gray-900 mb-8">Informações de Contato</h3>
+              
+              <div class="space-y-6">
+                <div class="flex items-start">
+                  <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
+                    <i class="fas fa-envelope text-white"></i>
+                  </div>
+                  <div>
+                    <p class="font-semibold text-gray-900 mb-1">Email:</p>
+                    <a href="mailto:amax28011@gmail.com" class="text-blue-600 hover:text-blue-700 transition-colors">amax28011@gmail.com</a>
+                  </div>
+                </div>
+                
+                <div class="flex items-start">
+                  <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
+                    <i class="fab fa-instagram text-white"></i>
+                  </div>
+                  <div>
+                    <p class="font-semibold text-gray-900 mb-1">Instagram:</p>
+                    <a href="https://www.instagram.com/anderson.python" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-700 transition-colors">@anderson.python</a>
+                  </div>
+                </div>
+                
+                <div class="flex items-start">
+                  <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
+                    <i class="fas fa-clock text-white"></i>
+                  </div>
+                  <div>
+                    <p class="font-semibold text-gray-900 mb-1">Horário de Atendimento:</p>
+                    <p class="text-gray-600">Segunda a Sexta: 8h às 18h</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-8 pt-8 border-t border-gray-200">
+                <h4 class="font-semibold text-gray-900 mb-4">Siga-nos nas Redes Sociais</h4>
+                <div class="flex space-x-4">
+                  <a href="https://www.facebook.com/profile.php?id=100073860318519" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110">
+                    <i class="fab fa-facebook-f"></i>
+                  </a>
+                  <a href="https://www.linkedin.com/in/andersonnetobackend/" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110">
+                    <i class="fab fa-linkedin-in"></i>
+                  </a>
+                  <a href="https://www.instagram.com/anderson.python" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-gradient-to-br from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110">
+                    <i class="fab fa-instagram"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+            <div class="contact-form">
+    <h3>Solicitar Orçamento</h3>
+    
+
+<form id="contactForm" action="processar_orcamento.php" method="POST">
+        <div class="form-group">
+            <label for="name">Nome Completo *</label>
+            <input type="text" id="name" name="name" required placeholder="Seu nome completo">
+        </div>
+        <div class="form-group">
+            <label for="email">Email Corporativo *</label>
+            <input type="email" id="email" name="email" required placeholder="seu.email@empresa.com">
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Telefone de Contato</label>
+            <input type="tel" id="phone" name="phone" placeholder="+351 xxx xxx xxx">
+        </div>
+
+        <div class="form-group">
+            <label for="message">Descrição do Projeto *</label>
+            <textarea id="message" name="message" required placeholder="Descreva seu projeto, necessidades e objetivos..."></textarea>
+        </div>
+
+        <button type="submit" class="form-submit">
+            <i class="fas fa-paper-plane"></i> Enviar Solicitação
+        </button>
+
+        <p class="form-note">
+            * Campos obrigatórios. Responderemos em até 2 horas úteis.
+        </p>
+    </form>
+    <div id="formMessage" style="margin-top: 15px;"></div>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Impede o envio padrão do formulário
+
+            const form = event.target;
+            const formData = new FormData(form);
+            const jsonData = {};
+
+            for (let [key, value] of formData.entries()) {
+                jsonData[key] = value;
+            }
+
+            let messageContainer = document.getElementById('formMessage');
+            if (!messageContainer) {
+                messageContainer = document.createElement('p');
+                messageContainer.id = 'formMessage';
+                form.parentNode.insertBefore(messageContainer, form.nextSibling);
+            }
+            messageContainer.textContent = 'Enviando sua solicitação...';
+            messageContainer.style.color = '#007bff';
+            messageContainer.style.fontWeight = 'bold';
+
+
+            fetch('processar_orcamento.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(jsonData)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro de rede ou servidor com status: ' + response.status);
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    messageContainer.textContent = data.message;
+                    messageContainer.style.color = 'green';
+                    form.reset();
+                } else {
+                    messageContainer.textContent = 'Erro: ' + data.message;
+                    messageContainer.style.color = 'red';
+                }
+            })
+            .catch(error => {
+                console.error('Erro no fetch:', error);
+                messageContainer.textContent = 'Ocorreu um erro ao enviar a solicitação. Tente novamente.';
+                messageContainer.style.color = 'red';
+            });
+        });
+    </script>
+
+
+
+        </div>
+</div>
+
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div class="col-span-1 md:col-span-2">
+            <div class="flex items-center mb-4">
+              <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mr-3">
+                <i class="fas fa-chart-line text-white text-lg"></i>
+              </div>
+              <span class="font-bold text-2xl">NetoFramework</span>
+            </div>
+            <p class="text-gray-400 mb-6 leading-relaxed">
+              Desenvolvemos estratégias de negócios inovadoras e eficazes para impulsionar o crescimento sustentável da sua empresa.
+            </p>
+            <div class="flex space-x-4">
+              <a href="https://www.facebook.com/profile.php?id=61577740561449" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-gray-800 hover:bg-blue-600 rounded-lg flex items-center justify-center transition-colors">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/neto-framework-1104a5371/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-gray-800 hover:bg-blue-600 rounded-lg flex items-center justify-center transition-colors">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a href="https://www.instagram.com/netoframework/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-gray-800 hover:bg-pink-600 rounded-lg flex items-center justify-center transition-colors">
+                <i class="fab fa-instagram"></i>
+              </a>
+            </div>
+          </div>
+          
+          <div>
+            <h4 class="font-semibold text-lg mb-4">Serviços</h4>
+            <ul class="space-y-2 text-gray-400">
+              <li><a href="#metodologia" class="hover:text-white transition-colors">Análise de Mercado</a></li>
+              <li><a href="#metodologia" class="hover:text-white transition-colors">Planejamento Estratégico</a></li>
+              <li><a href="#metodologia" class="hover:text-white transition-colors">Implementação</a></li>
+              <li><a href="#metodologia" class="hover:text-white transition-colors">Monitoramento</a></li>
+            </ul>
+          </div>
+          
+          <div>
+            <h4 class="font-semibold text-lg mb-4">Contato</h4>
+            <ul class="space-y-2 text-gray-400">
+              <li class="flex items-center">
+                <i class="fas fa-envelope mr-2"></i>
+                <a href="mailto:netoframework@gmail.com" class="hover:text-white transition-colors">netoframework@gmail.com</a>
+              </li>
+              <li class="flex items-center">
+                <i class="fab fa-instagram mr-2"></i>
+                <a href="https://www.instagram.com/netoframework/" target="_blank" class="hover:text-white transition-colors">@netoframework</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+          <p class="text-gray-400">
+            © <span id="currentYear">2024</span> NetoFramework. Todos os direitos reservados.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+      // Update current year in footer
+      document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+      // Header scroll effect
+      const header = document.getElementById('header');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          header.classList.add('header-scrolled');
+        } else {
+          header.classList.remove('header-scrolled');
+        }
+      });
+
+      // Mobile menu functionality
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const closeMobileMenu = document.getElementById('closeMobileMenu');
+      const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+      
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+      
+      closeMobileMenu.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      });
+      
+      // Close mobile menu when clicking on links
+      mobileNavLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.remove('active');
+          document.body.style.overflow = 'auto';
+        });
+      });
+
+      // Close mobile menu when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+          mobileMenu.classList.remove('active');
+          document.body.style.overflow = 'auto';
+        }
+      });
+
+      // Contact form handling
+      const contactForm = document.getElementById('contactForm');
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const formData = new FormData(contactForm);
+        const data = Object.fromEntries(formData);
+        
+        // Show success message
+        const btn = contactForm.querySelector('button[type="submit"]');
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-check mr-2"></i>Mensagem Enviada!';
+        btn.classList.add('bg-green-500');
+        
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.classList.remove('bg-green-500');
+          contactForm.reset();
+        }, 3000);
+        
+        // Here you would typically send the form data to your server
+        console.log('Form data:', data);
+      });
+
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            const headerHeight = document.getElementById('header').offsetHeight;
+            const targetPosition = target.offsetTop - headerHeight;
+            
+            window.scrollTo({
+              top: targetPosition,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+
+      // Scroll animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, observerOptions);
+
+      // Observe all animation elements
+      document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+        observer.observe(el);
+      });
+
+      // Counter animation for stats
+      const animateCounter = (element, target) => {
+        const increment = target / 100;
+        let current = 0;
+        
+        const updateCounter = () => {
+          if (current < target) {
+            current += increment;
+            element.textContent = Math.ceil(current) + (element.textContent.includes('%') ? '%' : '+');
+            requestAnimationFrame(updateCounter);
+          } else {
+            element.textContent = target + (element.textContent.includes('%') ? '%' : '+');
+          }
+        };
+        
+        updateCounter();
+      };
+
+      // Stats counter animation
+      const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const statsNumbers = entry.target.querySelectorAll('.stats-number');
+            statsNumbers.forEach(stat => {
+              const text = stat.textContent;
+              const number = parseInt(text.replace(/[^0-9]/g, ''));
+              if (number) {
+                stat.textContent = '0' + (text.includes('%') ? '%' : '+');
+                setTimeout(() => animateCounter(stat, number), 500);
+              }
+            });
+            statsObserver.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      const statsSection = document.getElementById('stats');
+      if (statsSection) {
+        statsObserver.observe(statsSection);
+      }
+
+      // Parallax effect for hero section
+      window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const parallaxElements = document.querySelectorAll('.floating-animation');
+        
+        parallaxElements.forEach(element => {
+          const speed = 0.5;
+          element.style.transform = `translateY(${scrolled * speed}px)`;
+        });
+      });
+
+      // Add loading animation
+      window.addEventListener('load', () => {
+        document.body.classList.add('loaded');
+      });
+
+      // Enhanced form validation
+      const inputs = document.querySelectorAll('.form-input');
+      inputs.forEach(input => {
+        input.addEventListener('blur', () => {
+          if (input.value.trim() !== '') {
+            input.classList.add('has-value');
+          } else {
+            input.classList.remove('has-value');
+          }
+        });
+        
+        input.addEventListener('focus', () => {
+          input.classList.add('focused');
+        });
+        
+        input.addEventListener('blur', () => {
+          input.classList.remove('focused');
+        });
+      });
+    </script>
+  </body>
+</html>

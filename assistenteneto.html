@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assistente Virtual Inteligente - NetoFramework</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #4c1d95, #5b21b6, #7c3aed);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .chatbot {
+            width: 100%;
+            max-width: 450px;
+            background-color: rgba(255, 255, 255, 0.97);
+            border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(20px);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .chatbot:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #4c1d95, #5b21b6, #7c3aed);
+            color: white;
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+        }
+
+        .chat-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .chat-header svg {
+            width: 28px;
+            height: 28px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .chat-header h1 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: auto;
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #10b981;
+            border-radius: 50%;
+            animation: blink 1.5s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.3; }
+        }
+
+        .chat-box {
+            padding: 25px;
+            height: 500px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            scroll-behavior: smooth;
+        }
+
+        .chat-box::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chat-box::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 10px;
+        }
+
+        .chat-box::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+
+        .chat-box::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        .message {
+            padding: 15px 20px;
+            border-radius: 20px;
+            max-width: 85%;
+            line-height: 1.5;
+            position: relative;
+            animation: messageSlide 0.4s ease-out;
+            white-space: pre-line;
+            word-wrap: break-word;
+        }
+
+        @keyframes messageSlide {
+            from { 
+                opacity: 0; 
+                transform: translateY(20px) scale(0.95); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0) scale(1); 
+            }
+        }
+
+        .bot-message {
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            color: #1e293b;
+            align-self: flex-start;
+            border-bottom-left-radius: 8px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .user-message {
+            background: linear-gradient(135deg, #4c1d95, #5b21b6);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 8px;
+            box-shadow: 0 4px 12px rgba(76, 29, 149, 0.3);
+        }
+
+        .message-time {
+            font-size: 0.7rem;
+            opacity: 0.6;
+            margin-top: 5px;
+            text-align: right;
+        }
+
+        .bot-message .message-time {
+            text-align: left;
+        }
+
+        .input-area {
+            padding: 25px;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            gap: 12px;
+            background: rgba(248, 250, 252, 0.8);
+        }
+
+        .input-area input {
+            flex: 1;
+            padding: 15px 20px;
+            border: 2px solid #e5e7eb;
+            border-radius: 15px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .input-area input:focus {
+            outline: none;
+            border-color: #4c1d95;
+            box-shadow: 0 0 0 4px rgba(76, 29, 149, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .input-area button {
+            padding: 15px 25px;
+            background: linear-gradient(135deg, #4c1d95, #5b21b6);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(76, 29, 149, 0.3);
+        }
+
+        .input-area button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(76, 29, 149, 0.4);
+        }
+
+        .input-area button:active {
+            transform: translateY(0);
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 6px;
+            padding: 15px 20px;
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            border-radius: 20px;
+            align-self: flex-start;
+            margin-top: 10px;
+            animation: messageSlide 0.4s ease-out;
+            border: 1px solid #e2e8f0;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #6b7280;
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-6px); }
+        }
+
+        .suggestion-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding: 0 25px;
+            max-height: 100px;
+            overflow-y: auto;
+            transition: all 0.3s ease;
+        }
+
+        .suggestion-chip {
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            border: 1px solid #e5e7eb;
+            padding: 10px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #4c1d95;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .suggestion-chip:hover {
+            background: linear-gradient(135deg, #4c1d95, #5b21b6);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(76, 29, 149, 0.3);
+        }
+
+        .quick-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .quick-action {
+            padding: 6px 12px;
+            background: rgba(76, 29, 149, 0.1);
+            border: 1px solid rgba(76, 29, 149, 0.2);
+            border-radius: 12px;
+            font-size: 0.8rem;
+            color: #4c1d95;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .quick-action:hover {
+            background: rgba(76, 29, 149, 0.2);
+            transform: scale(1.05);
+        }
+
+        .context-info {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 12px;
+            padding: 10px 15px;
+            margin: 10px 0;
+            font-size: 0.9rem;
+            color: #065f46;
+        }
+
+        .error-message {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            border-radius: 12px;
+            padding: 10px 15px;
+            margin: 10px 0;
+            font-size: 0.9rem;
+            color: #dc2626;
+        }
+
+        .conversation-summary {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 0.9rem;
+            color: #1e40af;
+        }
+
+        @media (max-width: 768px) {
+            .chatbot {
+                max-width: 100%;
+                margin: 10px;
+                border-radius: 20px;
+            }
+            
+            .chat-box {
+                height: 400px;
+                padding: 20px;
+            }
+            
+            .chat-header {
+                padding: 20px;
+            }
+            
+            .chat-header h1 {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="chatbot">
+        <div class="chat-header">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                <path d="M8 9h8"/>
+                <path d="M8 13h6"/>
+            </svg>
+            <h1>Assistente IA - NetoFramework</h1>
+            <div class="status-indicator">
+                <div class="status-dot"></div>
+                <span>Online</span>
+            </div>
+        </div>
+        <div class="chat-box" id="chat-box">
+            <div class="message bot-message">
+                Olá! 👋 Sou o Assistente Inteligente do NetoFramework. 
+                
+                Posso ajudar com:
+                • Informações sobre nossa plataforma
+                • Estratégias de negócios digitais
+                • Dicas de marketing e vendas
+                • Suporte técnico
+                • Análise de mercado
+                
+                Como posso transformar sua ideia em sucesso hoje?
+                <div class="message-time" id="initial-time"></div>
+            </div>
+        </div>
+        <div class="suggestion-chips" id="suggestion-chips">
+            <button class="suggestion-chip" onclick="sendSuggestion('O que é a NetoFramework?')">🏢 Sobre a NetoFramework</button>
+            <button class="suggestion-chip" onclick="sendSuggestion('Quais são as principais funcionalidades?')">⚙️ Funcionalidades</button>
+            <button class="suggestion-chip" onclick="sendSuggestion('Como começar meu e-commerce?')">🚀 Começar e-commerce</button>
+            <button class="suggestion-chip" onclick="sendSuggestion('Dicas para aumentar vendas')">📈 Aumentar vendas</button>
+            <button class="suggestion-chip" onclick="sendSuggestion('Análise de concorrência')">🔍 Análise mercado</button>
+            <button class="suggestion-chip" onclick="sendSuggestion('Integração com redes sociais')">📱 Redes sociais</button>
+        </div>
+        <div class="input-area">
+            <input type="text" id="user-input" placeholder="Digite sua mensagem ou pergunta..." onkeypress="handleKeyPress(event)">
+            <button onclick="sendMessage()">Enviar</button>
+        </div>
+    </div>
+
+    <script>
+        // Sistema de conversação inteligente
+        let conversationHistory = [];
+        let userPreferences = {};
+        let contextMemory = {};
+        let lastInteraction = null;
+
+        // Base de conhecimento expandida
+        const knowledgeBase = {
+            greeting: {
+                keywords: ['oi', 'olá', 'ei', 'hey', 'ola', 'hello', 'hi', 'e aí', 'beleza', 'fala', 'opa', 'bom dia', 'boa tarde', 'boa noite', 'tudo bem', 'como vai', 'salve', 'alô'],
+                responses: [
+                    "Olá! 😊 Que bom te ver aqui! Como posso ajudar você hoje?",
+                    "Oi! 👋 Estou aqui para transformar suas ideias em realidade digital. O que você gostaria de saber?",
+                    "Hey! 🚀 Pronto para revolucionar seu negócio online? Vamos começar!"
+                ],
+                followUp: ['O que te trouxe aqui hoje?', 'Tem algum projeto em mente?', 'Quer conhecer nossas soluções?']
+            },
+
+            about: {
+                keywords: ['neto', 'framework', 'plataforma', 'o que é', 'sobre', 'conhecer', 'empresa', 'quem somos'],
+                responses: [
+                    "A NetoFramework é uma plataforma revolucionária que transforma ideias em negócios digitais de sucesso! 🌟\n\n✨ **Principais diferenciais:**\n• Tecnologia de ponta com IA integrada\n• Interface intuitiva e personalizável\n• Automação completa de processos\n• Suporte 24/7 especializado\n• Integração com +50 ferramentas\n\n🎯 **Missão:** Democratizar o empreendedorismo digital\n🏆 **Mais de 10.000 empresas confiam em nós!**",
+                    
+                    "🏢 **NetoFramework - Sua parceira digital completa!**\n\nSomos especialistas em transformar visões em realidade digital:\n\n🔥 **Inovação Constante**\n• Atualizações mensais\n• Tecnologias emergentes\n• IA aplicada ao seu negócio\n\n💼 **Ecossistema Completo**\n• E-commerce avançado\n• Marketing automation\n• CRM integrado\n• Analytics preditivo\n\n🌍 **Alcance Global**\n• Presença em 15 países\n• Suporte multilíngue\n• Compliance internacional"
+                ],
+                followUp: ['Quer ver uma demonstração?', 'Qual área te interessa mais?', 'Tem alguma dúvida específica?']
+            },
+
+            features: {
+                keywords: ['funcionalidade', 'características', 'recursos', 'features', 'fazer', 'possível', 'ferramenta', 'módulo'],
+                responses: [
+                    "🚀 **Recursos Avançados da NetoFramework:**\n\n📊 **Analytics Inteligente**\n• Dashboard em tempo real\n• Previsão de vendas com IA\n• Análise comportamental\n• ROI automatizado\n\n🛒 **E-commerce Completo**\n• Checkout em 1 clique\n• Recuperação de carrinho\n• Cross-selling inteligente\n• Gestão multi-canal\n\n🤖 **Automação Avançada**\n• Chatbot com IA\n• Email marketing smart\n• Gestão de estoque\n• Processos personalizados",
+                    
+                    "⚡ **Funcionalidades Premium:**\n\n🎨 **Design & UX**\n• Templates responsivos\n• Editor drag-and-drop\n• A/B testing automático\n• Otimização mobile\n\n🔒 **Segurança Enterprise**\n• SSL certificado\n• Backup automático\n• Conformidade LGPD\n• Autenticação 2FA\n\n🌐 **Integração Total**\n• APIs abertas\n• Webhooks\n• Marketplace apps\n• Conectores nativos",
+                    
+                    "🎯 **Recursos Exclusivos:**\n\n📱 **Mobile First**\n• App nativo gratuito\n• PWA integrado\n• Notificações push\n• Offline support\n\n🎭 **Personalização**\n• White-label completo\n• Customização CSS\n• Plugins personalizados\n• Workflows únicos\n\n📈 **Growth Hacking**\n• Funil de vendas\n• Lead scoring\n• Segmentação avançada\n• Testes multivariados"
+                ],
+                followUp: ['Qual recurso te interessa mais?', 'Quer testar alguma funcionalidade?', 'Precisa de integração específica?']
+            },
+
+            business_tips: {
+                keywords: ['dicas', 'negócio', 'melhorar', 'aumentar', 'estratégia', 'sugestões', 'como', 'crescer', 'lucrar'],
+                responses: [
+                    "💡 **Estratégias Comprovadas para Crescimento:**\n\n🎯 **Marketing Digital 360°**\n• SEO: Posicionamento orgânico\n• SEM: Anúncios direcionados\n• Social Media: Engajamento autêntico\n• Content Marketing: Educar e converter\n\n⚡ **Otimização de Conversão**\n• Landing pages otimizadas\n• Checkout simplificado\n• Provas sociais\n• Urgência e escassez\n\n📊 **Data-Driven Decisions**\n• Métricas relevantes\n• Testes A/B constantes\n• Análise de cohort\n• Lifetime value (LTV)",
+                    
+                    "🚀 **Crescimento Exponencial - Estratégias Avançadas:**\n\n🧠 **Psicologia do Consumidor**\n• Princípios de persuasão\n• Jornada do cliente\n• Triggers comportamentais\n• Storytelling eficaz\n\n🔄 **Automação Inteligente**\n• Nurturing automático\n• Segmentação dinâmica\n• Remarketing avançado\n• Customer success\n\n💰 **Monetização Máxima**\n• Upsell e cross-sell\n• Programas de fidelidade\n• Subscription models\n• Parcerias estratégicas"
+                ],
+                followUp: ['Quer um plano personalizado?', 'Qual área precisa de mais atenção?', 'Posso analisar seu negócio atual?']
+            },
+
+            sales: {
+                keywords: ['vender', 'vendas', 'produto', 'serviço', 'como vender', 'conversão', 'cliente', 'comprar'],
+                responses: [
+                    "💰 **Técnicas de Vendas Comprovadas:**\n\n🎯 **Funil de Vendas Otimizado**\n• Atração: Conteúdo relevante\n• Interesse: Lead magnets\n• Consideração: Webinars/demos\n• Compra: Ofertas irresistíveis\n• Fidelização: Pós-venda excelente\n\n🔥 **Copywriting Persuasivo**\n• Headlines que convertem\n• Benefícios vs características\n• Objeções antecipadas\n• Call-to-actions poderosos\n\n📱 **Omnichannel Experience**\n• Experiência consistente\n• Retargeting inteligente\n• Atendimento multicanal\n• Jornada personalizada",
+                    
+                    "🏆 **Vendas High-Performance:**\n\n🎨 **Design que Converte**\n• Psicologia das cores\n• Hierarquia visual\n• Prova social estratégica\n• Navegação intuitiva\n\n⚡ **Velocity Selling**\n• Processo de vendas ágil\n• Qualificação BANT\n• Objeções pré-definidas\n• Follow-up sistemático\n\n📊 **Analytics de Vendas**\n• Taxa de conversão\n• Ticket médio\n• CAC e LTV\n• Performance por canal"
+                ],
+                followUp: ['Quer otimizar seu funil?', 'Precisa de copywriting?', 'Vamos analisar suas métricas?']
+            },
+
+            pricing: {
+                keywords: ['preço', 'custo', 'valor', 'plano', 'investimento', 'quanto custa', 'pagamento', 'assinatura'],
+                responses: [
+                    "💎 **Planos Flexíveis e Escaláveis:**\n\n🚀 **Starter - R$ 97/mês**\n• Até 1.000 produtos\n• 5GB de armazenamento\n• Suporte por email\n• Templates básicos\n• SSL gratuito\n\n⭐ **Professional - R$ 197/mês**\n• Produtos ilimitados\n• 50GB de armazenamento\n• Suporte prioritário\n• Templates premium\n• Analytics avançado\n• Automação básica\n\n🏆 **Enterprise - R$ 397/mês**\n• Recursos ilimitados\n• 200GB de armazenamento\n• Suporte 24/7\n• Customização total\n• IA integrada\n• Consultoria mensal",
+                    
+                    "💰 **Investimento Estratégico:**\n\n🎯 **ROI Garantido**\n• Aumento médio de 300% nas vendas\n• Redução de 60% nos custos operacionais\n• Payback em 3 meses\n• Garantia de 30 dias\n\n🎁 **Bônus Exclusivos**\n• Setup gratuito\n• Migração sem custos\n• Treinamento completo\n• 3 meses de consultoria\n\n💳 **Facilidades de Pagamento**\n• Parcelamento em 12x\n• Desconto anual (20%)\n• Upgrade/downgrade flexível\n• Sem taxa de setup"
+                ],
+                followUp: ['Qual plano se encaixa melhor?', 'Quer uma demonstração?', 'Posso calcular seu ROI?']
+            },
+
+            start: {
+                keywords: ['começar', 'iniciar', 'primeiros passos', 'cadastro', 'tutorial', 'como começar', 'setup'],
+                responses: [
+                    "🎯 **Jornada de Sucesso - Passo a Passo:**\n\n1️⃣ **Planejamento Estratégico**\n• Definição de nicho\n• Análise de concorrência\n• Personas e público-alvo\n• Estrutura de produtos\n\n2️⃣ **Configuração Técnica**\n• Domínio personalizado\n• Design responsivo\n• Integração de pagamentos\n• Configuração de SEO\n\n3️⃣ **Lançamento Inteligente**\n• Campanha de pré-lançamento\n• Estratégia de conteúdo\n• Parcerias estratégicas\n• Monitoramento contínuo",
+                    
+                    "🚀 **Guia Completo de Implementação:**\n\n📋 **Checklist Essencial**\n✅ Registro de domínio\n✅ Configuração de hospedagem\n✅ Instalação da plataforma\n✅ Customização visual\n✅ Catálogo de produtos\n✅ Métodos de pagamento\n✅ Políticas e termos\n✅ Teste de funcionalidades\n\n🎓 **Recursos de Apoio**\n• Documentação completa\n• Vídeos tutoriais\n• Webinars ao vivo\n• Comunidade ativa\n• Suporte especializado"
+                ],
+                followUp: ['Quer começar agora?', 'Precisa de ajuda específica?', 'Tem dúvidas sobre algum passo?']
+            },
+
+            marketing: {
+                keywords: ['marketing', 'publicidade', 'anúncio', 'divulgação', 'promover', 'social media', 'instagram', 'facebook'],
+                responses: [
+                    "📱 **Marketing Digital Avançado:**\n\n🎯 **Estratégia Multi-Canal**\n• Google Ads otimizado\n• Facebook/Instagram Ads\n• LinkedIn para B2B\n• TikTok para Gen Z\n• Email marketing automation\n\n📊 **Performance Marketing**\n• Tracking avançado\n• Atribuição multi-touch\n• Otimização por IA\n• Remarketing inteligente\n\n🎨 **Criação de Conteúdo**\n• Templates profissionais\n• Vídeos automatizados\n• Stories interativos\n• Carrosséis educativos"
+                ],
+                followUp: ['Qual canal priorizar?', 'Precisa de criativos?', 'Vamos definir uma estratégia?']
+            },
+
+            competition: {
+                keywords: ['concorrência', 'concorrente', 'análise', 'mercado', 'competição', 'benchmark'],
+                responses: [
+                    "🔍 **Análise Competitiva Profunda:**\n\n🎯 **Mapeamento de Concorrentes**\n• Identificação de players\n• Análise de posicionamento\n• Estratégias de pricing\n• Pontos fortes e fracos\n\n📊 **Inteligência de Mercado**\n• Tendências do setor\n• Oportunidades de nicho\n• Análise de keywords\n• Gaps competitivos\n\n🚀 **Vantagem Competitiva**\n• Diferenciação única\n• Proposta de valor\n• Inovação constante\n• Execução superior"
+                ],
+                followUp: ['Quer uma análise do seu nicho?', 'Precisa de posicionamento?', 'Vamos identificar oportunidades?']
+            },
+
+            technical: {
+                keywords: ['técnico', 'suporte', 'problema', 'erro', 'bug', 'integração', 'api', 'código'],
+                responses: [
+                    "🔧 **Suporte Técnico Especializado:**\n\n⚡ **Diagnóstico Rápido**\n• Análise de logs\n• Teste de performance\n• Verificação de integrações\n• Validação de código\n\n🛠️ **Soluções Personalizadas**\n• Customizações específicas\n• Integrações complexas\n• Otimizações avançadas\n• Desenvolvimentos únicos\n\n📞 **Canais de Suporte**\n• Chat ao vivo 24/7\n• Ticket system\n• Videochamada\n• Acesso remoto"
+                ],
+                followUp: ['Qual problema específico?', 'Precisa de integração?', 'Vamos agendar uma call?']
+            },
+
+            integrations: {
+                keywords: ['integração', 'conectar', 'api', 'webhook', 'erp', 'crm', 'pagamento'],
+                responses: [
+                    "🔗 **Integrações Nativas e Personalizadas:**\n\n💳 **Pagamentos**\n• Stripe, PayPal, PagSeguro\n• Pix instantâneo\n• Cartões e boletos\n• Pagamento recorrente\n\n📊 **Gestão**\n• Salesforce, HubSpot\n• SAP, Oracle\n• Mailchimp, RD Station\n• Google Analytics\n\n🚚 **Logística**\n• Correios, Jadlog\n• Uber, Rappi\n• Estoque integrado\n• Tracking automático"
+                ],
+                followUp: ['Qual sistema integrar?', 'Precisa de API custom?', 'Vamos configurar juntos?']
+            },
+
+            security: {
+                keywords: ['segurança', 'proteção', 'ssl', 'backup', 'lgpd', 'dados', 'privacidade'],
+                responses: [
+                    "🔒 **Segurança Enterprise:**\n\n🛡️ **Proteção Avançada**\n• SSL 256-bit\n• Firewall WAF\n• Anti-DDoS\n• Monitoramento 24/7\n\n💾 **Backup Automático**\n• Backup incremental\n• Múltiplas localizações\n• Restore em 1 clique\n• Histórico de 30 dias\n\n📋 **Conformidade**\n• LGPD compliant\n• PCI DSS Level 1\n• ISO 27001\n• Auditoria contínua"
+                ],
+                followUp: ['Precisa de auditoria?', 'Quer configurar 2FA?', 'Dúvidas sobre LGPD?']
+            },
+
+            default: {
+                responses: [
+                    "🤔 Interessante! Posso ajudar com isso de várias formas:\n\n• **Consulta especializada** - Análise personalizada\n• **Demonstração prática** - Vamos ver na prática\n• **Recursos educativos** - Materiais de apoio\n• **Suporte técnico** - Solução imediata\n\nO que seria mais útil para você agora?",
+                    
+                    "💡 **Vamos explorar juntos!** Embora eu não tenha uma resposta específica para isso, posso:\n\n🎯 **Analisar seu contexto**\n🔍 **Buscar soluções personalizadas**\n📞 **Conectar com especialistas**\n📚 **Indicar recursos relevantes**\n\nConte-me mais detalhes sobre o que você precisa!"
+                ],
+                followUp: ['Pode dar mais detalhes?', 'Qual seu objetivo principal?', 'Precisa de ajuda específica?']
+            }
+        };
+
+        // Função para análise de sentimento simples
+        function analyzeSentiment(text) {
+            const positive = ['bom', 'ótimo', 'excelente', 'maravilhoso', 'perfeito', 'legal', 'incrível'];
+            const negative = ['ruim', 'péssimo', 'terrível', 'horrível', 'problema', 'erro', 'difícil'];
+            
+            const words = text.toLowerCase().split(' ');
+            let positiveCount = 0;
+            let negativeCount = 0;
+            
+            words.forEach(word => {
+                if (positive.includes(word)) positiveCount++;
+                if (negative.includes(word)) negativeCount++;
+            });
+            
+            if (positiveCount > negativeCount) return 'positive';
+            if (negativeCount > positiveCount) return 'negative';
+            return 'neutral';
+        }
+
+        // Função para encontrar melhor match com scoring avançado
+        function findBestMatch(input) {
+            const normalizedInput = input.toLowerCase();
+            const words = normalizedInput.split(' ');
+            let bestMatch = null;
+            let bestScore = 0;
+            
+            for (const [category, data] of Object.entries(knowledgeBase)) {
+                if (!data.keywords) continue;
+                
+                let score = 0;
+                data.keywords.forEach(keyword => {
+                    if (normalizedInput.includes(keyword)) {
+                        score += keyword.length / normalizedInput.length;
+                        
+                        // Bonus para match exato
+                        if (normalizedInput === keyword) score += 0.5;
+                        
+                        // Bonus para palavra completa
+                        if (words.includes(keyword)) score += 0.3;
+                    }
+                });
+                
+                if (score > bestScore) {
+                    bestScore = score;
+                    bestMatch = data;
+                }
+            }
+            
+            return bestMatch || knowledgeBase.default;
+        }
+
+        // Função para gerar resposta contextual
+        function generateContextualResponse(category, userInput) {
+            const response = getRandomResponse(category);
+            const sentiment = analyzeSentiment(userInput);
+            
+            let contextualResponse = response;
+            
+            // Ajusta resposta baseada no sentimento
+            if (sentiment === 'positive') {
+                contextualResponse = "😊 " + contextualResponse;
+            } else if (sentiment === 'negative') {
+                contextualResponse = "😔 Entendo sua preocupação. " + contextualResponse;
+            }
+            
+            return contextualResponse;
+        }
+
+        // Função para gerar sugestões dinâmicas
+        function generateDynamicSuggestions(category) {
+            const suggestions = [];
+            
+            if (category.followUp) {
+                suggestions.push(...category.followUp);
+            }
+            
+            // Sugestões baseadas no histórico
+            if (conversationHistory.length > 0) {
+                const lastCategory = conversationHistory[conversationHistory.length - 1].category;
+                if (lastCategory === 'about') {
+                    suggestions.push('Como posso começar?', 'Quanto custa?', 'Quais as vantagens?');
+                } else if (lastCategory === 'pricing') {
+                    suggestions.push('Agendar demonstração', 'Comparar planos', 'Formas de pagamento');
+                }
+            }
+            
+            return suggestions.slice(0, 3);
+        }
+
+        // Função para adicionar quick actions
+        function addQuickActions(message, category) {
+            const quickActions = [];
+            
+            if (category === knowledgeBase.pricing) {
+                quickActions.push('💰 Calcular ROI', '📞 Agendar demo', '📊 Comparar planos');
+            } else if (category === knowledgeBase.features) {
+                quickActions.push('🎮 Testar grátis', '📹 Ver demo', '📋 Lista completa');
+            } else if (category === knowledgeBase.start) {
+                quickActions.push('🚀 Começar agora', '📚 Guia completo', '🎓 Treinamento');
+            }
+            
+            if (quickActions.length > 0) {
+                const actionsDiv = document.createElement('div');
+                actionsDiv.className = 'quick-actions';
+                
+                quickActions.forEach(action => {
+                    const button = document.createElement('button');
+                    button.className = 'quick-action';
+                    button.textContent = action;
+                    button.onclick = () => sendSuggestion(action);
+                    actionsDiv.appendChild(button);
+                });
+                
+                message.appendChild(actionsDiv);
+            }
+        }
+
+        // Função para atualizar sugestões
+        function updateSuggestions(category) {
+            const chipsContainer = document.getElementById('suggestion-chips');
+            chipsContainer.innerHTML = '';
+            
+            const suggestions = generateDynamicSuggestions(category);
+            
+            suggestions.forEach(suggestion => {
+                const chip = document.createElement('button');
+                chip.className = 'suggestion-chip';
+                chip.textContent = suggestion;
+                chip.onclick = () => sendSuggestion(suggestion);
+                chipsContainer.appendChild(chip);
+            });
+        }
+
+        // Função para adicionar timestamp
+        function getCurrentTime() {
+            return new Date().toLocaleTimeString('pt-BR', { 
+                hour: '2-digit', 
+                minute: '2-digit' 
+            });
+        }
+
+        // Função para salvar conversa
+        function saveConversation(userInput, botResponse, category) {
+            conversationHistory.push({
+                timestamp: new Date(),
+                userInput: userInput,
+                botResponse: botResponse,
+                category: category,
+                sentiment: analyzeSentiment(userInput)
+            });
+            
+            // Limite de histórico
+            if (conversationHistory.length > 50) {
+                conversationHistory.shift();
+            }
+        }
+
+        // Função principal atualizada
+        function getRandomResponse(category) {
+            const responses = category.responses || category;
+            return responses[Math.floor(Math.random() * responses.length)];
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        }
+
+        function addTypingIndicator() {
+            const chatBox = document.getElementById("chat-box");
+            const typing = document.createElement("div");
+            typing.className = "typing-indicator";
+            typing.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+            chatBox.appendChild(typing);
+            chatBox.scrollTop = chatBox.scrollHeight;
+            return typing;
+        }
+
+        function sendSuggestion(text) {
+            document.getElementById("user-input").value = text;
+            sendMessage();
+        }
+
+        function sendMessage() {
+            const userInput = document.getElementById("user-input");
+            const chatBox = document.getElementById("chat-box");
+            const message = userInput.value.trim();
+
+            if (message === "") return;
+
+            // Adiciona mensagem do usuário
+            const userMessage = document.createElement("div");
+            userMessage.className = "message user-message";
+            userMessage.innerHTML = `${message}<div class="message-time">${getCurrentTime()}</div>`;
+            chatBox.appendChild(userMessage);
+
+            // Limpa input e adiciona indicador de digitação
+            userInput.value = "";
+            const typingIndicator = addTypingIndicator();
+
+            // Simula tempo de resposta variável
+            const responseTime = 1000 + Math.random() * 1000;
+            
+            setTimeout(() => {
+                typingIndicator.remove();
+                
+                const botMessage = document.createElement("div");
+                botMessage.className = "message bot-message";
+                
+                const matchedCategory = findBestMatch(message);
+                const response = generateContextualResponse(matchedCategory, message);
+                
+                botMessage.innerHTML = `${response}<div class="message-time">${getCurrentTime()}</div>`;
+                
+                // Adiciona quick actions se apropriado
+                addQuickActions(botMessage, matchedCategory);
+                
+                chatBox.appendChild(botMessage);
+                chatBox.scrollTop = chatBox.scrollHeight;
+                
+                // Atualiza sugestões
+                updateSuggestions(matchedCategory);
+                
+                // Salva conversa
+                saveConversation(message, response, matchedCategory);
+                
+                lastInteraction = new Date();
+            }, responseTime);
+        }
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function() {
+            // Define timestamp inicial
+            document.getElementById('initial-time').textContent = getCurrentTime();
+            
+            // Adiciona sugestões contextuais após 3 segundos
+            setTimeout(() => {
+                const contextInfo = document.createElement('div');
+                contextInfo.className = 'context-info';
+                contextInfo.innerHTML = '💡 <strong>Dica:</strong> Sou treinado com as últimas tendências de e-commerce e marketing digital. Pode me perguntar qualquer coisa!';
+                
+                const chatBox = document.getElementById('chat-box');
+                chatBox.appendChild(contextInfo);
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }, 3000);
+        });
+
+        // Auto-save conversation
+        setInterval(() => {
+            if (conversationHistory.length > 0) {
+                localStorage.setItem('netoframework_conversation', JSON.stringify(conversationHistory));
+            }
+        }, 30000);
+
+        // Load conversation on page load
+        window.addEventListener('load', () => {
+            const savedConversation = localStorage.getItem('netoframework_conversation');
+            if (savedConversation) {
+                conversationHistory = JSON.parse(savedConversation);
+            }
+        });
+    </script>
+</body>
+</html>
